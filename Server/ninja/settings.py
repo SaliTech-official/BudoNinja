@@ -27,6 +27,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# CORS SETTINGS
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+
+# SESSION CONFIGS
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_AGE = 1200 
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
+
 
 # Application definition
 
@@ -39,7 +53,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # LOCAL APPS
-    'acccounts.apps.AccountsConfig'
+    'acccounts.apps.AccountsConfig',
+
+    # THIRD PARTIES
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -118,3 +135,33 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+
+# REST FRAMEWORK CONFIGS
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.AnonRateThrottle',
+        'rest_framework.throttling.UserRateThrottle'
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/min',
+        'user': '100/min',
+    },
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+        'rest_framework.renderers.AdminRenderer',
+    ]
+}
+
+
+# SWAGGER CONFIGS
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'eduapp',
+    'DESCRIPTION': 'api doc for eduapp.',
+    'VERSION': '1.0.0',
+}
