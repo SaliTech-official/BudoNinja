@@ -41,6 +41,10 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_AGE = 1200 
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
+# USER MODEL 
+AUTH_USER_MODEL = 'accounts.User'
+
+
 
 # Application definition
 
@@ -53,7 +57,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # LOCAL APPS
-    'acccounts.apps.AccountsConfig',
+    'data.apps.DataConfig',
+    'accounts.apps.AccountsConfig',
+    
 
     # THIRD PARTIES
     'drf_spectacular',
