@@ -21,7 +21,7 @@ class UserAdmin(BaseUserAdmin):
     )
 
     add_fieldsets = (
-        (None, {'fields': ('phone_number', 'password')}),
+        (None, {'fields': ('phone_number', 'national_code', 'password')}),
     )
 
     readonly_fields = ('last_login',)
