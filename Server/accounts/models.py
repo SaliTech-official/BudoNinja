@@ -2,7 +2,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from data.models import Province, City
 from .managers import UserManager
-
+from django.utils.timezone import now
+from datetime import timedelta
+import hashlib
+import string
+import secrets
 
 class User(AbstractBaseUser, PermissionsMixin):
     GENDER_CHOICES = (
@@ -37,4 +41,46 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.is_admin
 
 
+class OTP(models.Model):
+    phone_number = models.CharField(max_length=11)
+    hashed_code = models.CharField(max_length=64)
+    used = models.BooleanField(default=False)
+    attempts = models.PositiveIntegerField(default=0)
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+
+    def __str__(self):
+        return f"{self.phone_number} - used={self.used}"
+    
+    @staticmethod
+    def _hash_otp(otp):
+        return hashlib.sha256(otp.encode()).hexdigest()
+    
+    @classmethod
+    def create_otp(cls, phone_number, length=6):
+        digits = string.digits
+        otp_code = ''.join(secrets.choice(digits) for _ in range(length))
+        expiry_time = now() + timedelta(minutes=3)
+        otp_hash = cls._hash_otp(otp_code)
+
+        cls.objects.create(email=phone_number, hashed_code=otp_hash, expires_at=expiry_time)
+        return otp_code
+    
+    @classmethod
+    def verify_otp(cls, phone_number, code, max_attempts=5):
+        otp_instance = cls.objects.filter(phone_number=phone_number, used=False, expires_at__gte=now()).order_by('-created_at').first()
+        if not otp_instance:
+            return False
+        
+        if otp_instance.attempts >= max_attempts:
+            return False
+        
+        if otp_instance.hashed_code == cls._hash_otp(code):
+            otp_instance.used = True
+            otp_instance.save()
+            return True
+        
+        otp_instance.attempts += 1
+        otp_instance.save()
+        return False
