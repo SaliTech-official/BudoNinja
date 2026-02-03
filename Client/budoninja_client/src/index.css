@@ -1,6 +1,100 @@
 @import "tailwindcss";
 
+/* Font Faces */
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('./fonts/webfonts/Vazirmatn-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('./fonts/webfonts/Vazirmatn-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('./fonts/webfonts/Vazirmatn-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('./fonts/webfonts/Vazirmatn-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('./fonts/webfonts/Vazirmatn-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('./fonts/webfonts/Vazirmatn-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('./fonts/webfonts/Vazirmatn-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('./fonts/webfonts/Vazirmatn-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Vazirmatn;
+  src: url('./fonts/webfonts/Vazirmatn-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ///////////////////////////////////////////////////////// */
+
+body {
+  font-family: var(--font-family-sans);
+}
+
 @theme{
+  
+  /* Font Family */
+  --font-family-sans: "Vazirmatn", system-ui, sans-serif;
+
+  /* Font Size */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 30px;
+  --font-size-4xl: 36px;
+
   /* Primary Colors */
   --color-primary-50: #FEF2F2;
   --color-primary-100: #FEE2E2;
@@ -51,5 +145,89 @@
   --color-status-error: #EF4444;
   --color-status-info: #3B82F6;
 
+  /* Spaces */
+  --space-0: 0px;
+  --space-0-5: 2px;
+  --space-1: 4px;
+  --space-1-5: 6px;
+  --space-2: 8px;
+  --space-2-5: 10px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* Radiuses */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-base: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+}
+
+@layer components{
+  /* Heading Styles */
+  .text-4xl {
+    font-size: var(--font-size-4xl);
+    font-weight: 700;
+    line-height: 44px;
+  }
+  .text-3xl {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    line-height: 36px;
+  }
+  .text-2xl {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    line-height: 30px;
+  }
+  .text-xl {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    line-height: 28px;
+  }
   
+  /* Body Styles */
+  .text-body-lg {
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+    line-height: 32px;
+  }
+  .text-body-base {
+    font-size: var(--font-size-base);
+    font-weight: 400;
+    line-height: 28px;
+  }
+  .text-body-sm {
+    font-size: var(--font-size-sm);
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  /* UI Styles */
+  .text-ui-base {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    line-height: 24px;
+  }
+  .text-ui-sm {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    line-height: 20px;
+  }
+  .text-ui-xs {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    line-height: 16px;
+  }
 }
