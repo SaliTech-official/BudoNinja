@@ -3,8 +3,6 @@ import { Button } from '../UI/Button.tsx';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, Bell, Home } from 'lucide-react';
-// فرض می‌کنیم لوگو رو به صورت SVG ایمپورت کردی
-// import { ReactComponent as Logo } from '@/assets/logo.svg';
 
 const navLinks = [
   { name: 'صفحه اصلی', href: '#' },
