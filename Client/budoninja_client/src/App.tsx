@@ -1,4 +1,5 @@
 import { Button } from "./components/UI/Button.tsx"
+import { Badge } from "./components/UI/Badge.tsx"
 
 function App() {
 
@@ -16,6 +17,14 @@ function App() {
       <Button size="lg">دکمه بزرگ</Button>
       
       <Button disabled>غیرفعال</Button>
+    </div>
+    <div className="p-10 flex gap-4">
+      <Badge>پیش‌فرض</Badge>
+      <Badge variant="primary">اصلی</Badge>
+      <Badge variant="success">موفق</Badge>
+      <Badge variant="warning">هشدار</Badge>
+      <Badge variant="danger">خطر</Badge>
+      <Badge variant="outline">خطی</Badge>
     </div>
     </>
   )
