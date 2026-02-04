@@ -1,10 +1,20 @@
 import { Button } from "./components/UI/Button.tsx"
 import { Badge } from "./components/UI/Badge.tsx"
 import { InputField } from "./components/UI/InputField.tsx"
+import NewsPicture from './assets/NewsCard.png'
+import { NewsCard } from "./components/cards/NewsCard.tsx"
 
 function App() {
 
   const emailError = "فرمت ایمیل نامعتبر است."; 
+  const sampleNews = {
+    imageUrl: NewsPicture, // یه لینک عکس بذار
+    category: "مسابقات",
+    date: "۲۰ آبان ۱۴۰۳",
+    title: "تیم ملی نینجوتسو قهرمان جهان شد",
+    excerpt: "تیم ملی ایران با کسب ۱۰ مدال طلا در مسابقات جهانی ژاپن، بر سکوی نخست ایستاد و افتخاری دیگر برای کشور آفرید...",
+    link: "#",
+  };
 
   return (
     <>
@@ -56,6 +66,18 @@ function App() {
         value="سالار خواجه ارزانی"
         disabled
       />
+
+      <InputField
+        as="textarea"
+        label="متن پیام"
+        placeholder="پیام خود را بنویسید..."
+        rows={5}
+      />
+    </div>
+    <div className="bg-bg-primary p-10">
+      <div className="max-w-sm">
+        <NewsCard {...sampleNews} />
+      </div>
     </div>
     </>
   )
