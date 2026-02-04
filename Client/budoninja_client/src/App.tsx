@@ -3,6 +3,7 @@ import { Badge } from "./components/UI/Badge.tsx"
 import { InputField } from "./components/UI/InputField.tsx"
 import NewsPicture from './assets/NewsCard.png'
 import { NewsCard } from "./components/cards/NewsCard.tsx"
+import { Header } from "./components/layout/Header.tsx"
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <>
+    <Header/>
       <div className="p-10 flex flex-col gap-4 items-start">
       <Button>دکمه اصلی</Button>
 
