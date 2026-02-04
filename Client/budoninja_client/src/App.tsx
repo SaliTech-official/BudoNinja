@@ -1,7 +1,10 @@
 import { Button } from "./components/UI/Button.tsx"
 import { Badge } from "./components/UI/Badge.tsx"
+import { InputField } from "./components/UI/InputField.tsx"
 
 function App() {
+
+  const emailError = "فرمت ایمیل نامعتبر است."; 
 
   return (
     <>
@@ -25,6 +28,34 @@ function App() {
       <Badge variant="warning">هشدار</Badge>
       <Badge variant="danger">خطر</Badge>
       <Badge variant="outline">خطی</Badge>
+    </div>
+    <div className="p-10 flex flex-col gap-6 max-w-sm">
+      <InputField
+        label="نام و نام خانوادگی"
+        id="full-name"
+        placeholder="مثلاً: علی محمدی"
+      />
+      
+
+      <InputField
+        label="ایمیل"
+        id="email"
+        type="email"
+        placeholder="example@mail.com"
+        errorMessage={emailError}
+      />
+      
+      <InputField
+        placeholder="جستجو..."
+      />
+
+      <InputField
+        label="نام و نام خانوادگی"
+        id="full-name"
+        placeholder="مثلاً: علی محمدی"
+        value="سالار خواجه ارزانی"
+        disabled
+      />
     </div>
     </>
   )
