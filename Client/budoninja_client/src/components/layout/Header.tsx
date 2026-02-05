@@ -1,75 +1,112 @@
-import React from 'react';
-import { Button } from '../UI/Button.tsx';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Bell, Home } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '../UI/Button';
+import { HamburgerButton } from '../Header/HamburgerButton';
 
 const navLinks = [
-  { name: 'صفحه اصلی', href: '#' },
-  { name: 'اخبار و رویدادها', href: '#' },
-  { name: 'مسابقات', href: '#' },
-  { name: 'درباره ما', href: '#' },
-  { name: 'تماس با ما', href: '#' },
+  { name: 'صفحه اصلی', href: '/' },
+  { name: 'اخبار', href: '/news' },
+  { name: 'مسابقات', href: '/events' },
+  { name: 'تماس با ما', href: '/contact' },
+  { name: 'درباره ما', href: '/about' },
 ];
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  return (
-    <header className="sticky top-0 z-50 w-full border-b border-neutral-700 bg-bg-secondary flex justify-center">
-      <div className="container flex h-20 items-center justify-between px-6 md:px-16">
-        
-        {/* بخش راست: لوگو و منوها */}
-        <div className="flex items-center">
-          {/* لوگو */}
-          <a href="#" className="flex items-center gap-2">
-            {/* <Logo className="h-10 w-10 text-primary-500" /> */}
-            <span className="text-xl font-bold text-neutral-50">BudoNinja</span>
-          </a>
-        </div>
+  const menuVariants = {
+    hidden: { x: '100%' },
+    visible: { x: 0 },
+  };
 
-          {/* لینک‌های منو - فقط برای دسکتاپ */}
-        <div>
+  const overlayVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
+  const toggleMenu = () => setIsMobileMenuOpen(prev => !prev);
+  const closeMenu = () => setIsMobileMenuOpen(false);
+
+  return (
+    <>
+      <header className="sticky top-0 z-50 w-full border-b border-neutral-700 bg-bg-secondary backdrop-blur-sm">
+        <div className="container mx-auto flex h-20 items-center justify-between px-6 md:px-8">
+          
+          <div className="flex items-center">
+            <Link to="/" className="flex items-center gap-2">
+              <span className="text-xl font-bold text-neutral-50">BudoNinja</span>
+            </Link>
+          </div>
+
+          <div>
             <nav className="hidden lg:flex gap-8">
                 {navLinks.map((link) => (
-                <Link
+                  <Link
                     key={link.name}
                     to={link.href}
-                    className="text-sm font-medium text-neutral-200 transition-colors hover:text-primary-600"
-                >
+                    className="text-sm font-medium text-neutral-200 transition-colors duration-200 ease-in-out hover:text-primary-500"
+                  >
                     {link.name}
-                </Link>
+                  </Link>
                 ))}
-            </nav>
-        </div>
+              </nav>
+          </div>
 
 
-        {/* بخش چپ: دکمه‌ها */}
-        <div className="flex items-center gap-4">
-          <Button variant="primary" size="sm" className='hidden md:block'>ورود به پنل کاربری</Button>
-          
-          {/* دکمه همبرگری - فقط برای موبایل */}
-          <div className="md:hidden">
-            <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <div className="flex items-center gap-4">
+            <Button variant="primary" size="lg" className="hidden lg:flex">
+              ورود به پنل
             </Button>
+            
+            <div className="lg:hidden">
+              <HamburgerButton isOpen={isMobileMenuOpen} onClick={toggleMenu} />
+            </div>
           </div>
-        
-          {/* پنل منوی موبایل */}
-          {isMobileMenuOpen && (
-            <div className="absolute top-20 left-0 w-full bg-bg-secondary md:hidden">
-            <nav className="flex flex-col items-center gap-6 p-8">
-                {navLinks.map((link) => (
-                <Link key={link.name} to={link.href} className="...">
-                    {link.name}
-                </Link>
-                ))}
-            </nav>
-          </div>
-          )}
-        </div>
 
-      </div>
-    </header>
+        </div>
+      </header>
+      
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <>
+            <motion.div
+              variants={overlayVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              transition={{ duration: 0.3 }}
+              onClick={closeMenu}
+              className="fixed inset-0 top-20 bg-black/50 z-40 lg:hidden"
+            />
+          
+            <motion.div
+              variants={menuVariants}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="fixed top-20 right-0 h-[calc(100vh-80px)] w-full max-w-sm bg-bg-secondary p-8 z-40 lg:hidden"
+            >
+              <nav className="flex flex-col items-start gap-8">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    to={link.href}
+                    onClick={closeMenu}
+                    className="text-lg font-medium text-neutral-200 transition-colors duration-200 ease-in-out hover:text-primary-500"
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+                <Button variant="primary" size="lg" className="w-full mt-6">
+                  ورود به پنل
+                </Button>
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
