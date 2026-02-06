@@ -7,7 +7,7 @@ interface HamburgerButtonProps {
 }
 
 export function HamburgerButton({ isOpen, onClick, className }: HamburgerButtonProps) {
-  const genericHamburgerLine = `h-0.5 w-6 my-1 rounded-full bg-neutral-50 transition ease transform duration-300`;
+  const genericHamburgerLine = `h-0.5 w-6 my-1 rounded-full bg-neutral-200 transition ease transform duration-300`;
 
   return (
     <button
