@@ -4,12 +4,13 @@ import { InputField } from "./components/UI/InputField.tsx"
 import NewsPicture from './assets/NewsCard.png'
 import { NewsCard } from "./components/cards/NewsCard.tsx"
 import { Header } from "./components/layout/Header.tsx"
+import { Footer } from "./components/layout/Footer.tsx"
 
 function App() {
 
   const emailError = "فرمت ایمیل نامعتبر است."; 
   const sampleNews = {
-    imageUrl: NewsPicture, // یه لینک عکس بذار
+    imageUrl: NewsPicture,
     category: "مسابقات",
     date: "۲۰ آبان ۱۴۰۳",
     title: "تیم ملی نینجوتسو قهرمان جهان شد",
@@ -81,6 +82,7 @@ function App() {
         <NewsCard {...sampleNews} />
       </div>
     </div>
+    <Footer />
     </>
   )
 }
