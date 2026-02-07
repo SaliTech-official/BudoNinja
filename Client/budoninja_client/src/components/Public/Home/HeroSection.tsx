@@ -12,10 +12,10 @@ export function HeroSection() {
       </div>
 
       <div className="relative z-10 px-20 flex h-full flex-col items-start justify-center text-center">
-        <h1 className="text-3xl font-black md:text-4xl text-shadow-md text-neutral-50">
+        <h1 className="text-3xl font-black md:text-4xl text-neutral-50">
           بنیانگذار سبک نینجوتسو در ایران
         </h1>
-        <p className="mt-4 max-w-2xl text-base md:text-lg text-neutral-200 text-shadow">
+        <p className="mt-4 max-w-2xl text-base md:text-lg text-neutral-200">
           آموزش تخصصی هنرهای رزمی، دفاع شخصی و سلاح‌های سرد زیر نظر برترین اساتید کشور.
         </p>
         
