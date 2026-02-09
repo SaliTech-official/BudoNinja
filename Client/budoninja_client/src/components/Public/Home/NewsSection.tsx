@@ -13,7 +13,7 @@ const sampleNewsData = [
     link: "/news/1",
   },
   {
-    id: 1,
+    id: 2,
     imageUrl: NewsCardPicture,
     category: "مسابقات",
     date: "۲۰ آبان ۱۴۰۳",
@@ -22,7 +22,7 @@ const sampleNewsData = [
     link: "/news/2",
   },
   {
-    id: 1,
+    id: 3,
     imageUrl: NewsCardPicture,
     category: "مسابقات",
     date: "۲۰ آبان ۱۴۰۳",
