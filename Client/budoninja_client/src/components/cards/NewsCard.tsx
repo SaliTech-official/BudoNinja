@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Badge } from '../UI/Badge.tsx';
 import { Button } from '../UI/Button.tsx';
+import { Link } from 'react-router-dom';
 import { cn } from '../../lib/utils.ts';
 
 interface NewsCardProps {
@@ -15,7 +16,7 @@ interface NewsCardProps {
 
 export function NewsCard({ imageUrl, category, date, title, excerpt, link, className }: NewsCardProps) {
   return (
-    <a href={link} className={cn("group max-w-90 flex flex-col overflow-hidden rounded-lg border border-neutral-700 bg-bg-secondary shadow-lg cursor-pointer", className)}>
+    <div className={cn("group max-w-90 flex flex-col overflow-hidden rounded-lg border border-neutral-700 bg-bg-secondary shadow-lg cursor-pointer", className)}>
       
       <div className="block flex-shrink-0 h-[220px] overflow-hidden ">
         <img className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-110" src={imageUrl} alt={title} />
@@ -35,11 +36,11 @@ export function NewsCard({ imageUrl, category, date, title, excerpt, link, class
         </div>
 
         <div className="mt-6 flex items-center justify-end">
-            <a href={link} className="text-sm font-medium text-primary-500 hover:text-primary-600">
+            <Link to={link} className="text-sm font-medium text-primary-500 hover:text-primary-600">
               ادامه مطلب
-            </a>
+            </Link>
         </div>
       </div>
-    </a>
+    </div>
   );
 }
