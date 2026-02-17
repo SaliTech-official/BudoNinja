@@ -12,8 +12,14 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        return User.objects.create(**validated_data)
+        return User.objects.create_user(**validated_data)
 
 
 class OTPInputSerializer(serializers.Serializer):
     code = serializers.CharField()
+
+
+class UserLoginSerializer(serializers.Serializer):
+    phone_number = serializers.CharField(max_length=11)
+    password = serializers.CharField(write_only=True)
+

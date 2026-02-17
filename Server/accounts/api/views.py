@@ -1,9 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserRegisterSerializer, OTPInputSerializer
-from django.contrib.auth import get_user_model
+from .serializers import UserRegisterSerializer, OTPInputSerializer, UserLoginSerializer
+from django.contrib.auth import get_user_model, authenticate
 from accounts.models import OTP
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
 
 User = get_user_model()
 
@@ -64,6 +66,38 @@ class UserVerifyView(APIView):
             request.session.modified = True
             return Response({'error': "invalid OTP code"},
                             status=status.HTTP_400_BAD_REQUEST) 
+        
+
+class UserLoginView(APIView):
+    """login users to their account."""
+    serializer_class = UserLoginSerializer
+
+    def post(self, request):
+        ser_data = self.serializer_class(data=request.data)
+        if ser_data.is_valid(raise_exception=True):
+            user_phone = ser_data.validated_data['phone_number']
+            password = ser_data.validated_data['password']
+
+            try:
+                user_obj = User.objects.get(phone_number=user_phone)
+            except User.DoesNotExist:
+                return Response({'message': "user with this phone number not exists."},
+                                status=status.HTTP_404_NOT_FOUND)
+            print("user found.:", user_obj.phone_number)
+            print("user raw pass.:", password)
+            print("user pass stored:", user_obj.password)
+            print("check pass:", user_obj.check_password(password))
+            user = authenticate(phone_number=user_phone, password=password)
+            if user:
+                refresh = RefreshToken.for_user(user)
+                return Response({
+                    "refresh": str(refresh),
+                    'access': str(refresh.access_token)
+                }, status=status.HTTP_200_OK)
+            return Response({'user credetials are invalid.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+
+
 
                 
 
