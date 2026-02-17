@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth import get_user_model
+from . models import OTP
 from .forms import UserCreationForm, UserChangeForm
 
 User = get_user_model()
@@ -10,7 +11,7 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ('full_name', 'phone_number', 'is_admin', 'is_active')
+    list_display = ('full_name', 'phone_number', 'is_admin', 'is_active', 'is_verified')
     list_filter = ('phone_number', 'is_admin')
     search_fields = ('phone_number',)
     ordering = ('full_name',)
@@ -36,3 +37,4 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(User, UserAdmin)
+admin.site.register(OTP)

@@ -34,4 +34,37 @@ class UserRegisterView(APIView):
                                 status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             return Response({'message': "user created and code was sent."},
                             status=status.HTTP_201_CREATED)
+        
+
+class UserVerifyView(APIView):
+    """after creating user user most verify via this endpoint.
+    otp most be in body. field name: code"""
+    serializer_class = OTPInputSerializer
+
+    def post(self, request):
+        ser_data = self.serializer_class(data=request.data)
+        if ser_data.is_valid(raise_exception=True):
+            user_session = request.session['user_register_info']
+            otp = ser_data.validated_data['code'] 
+            user = User.objects.filter(phone_number=user_session['phone']).first()
+            if not user:
+                return Response({'error': "user with this credential not found."},
+                                status=status.HTTP_404_NOT_FOUND)
+            if OTP.verify_otp(user_session['phone'], otp):
+                user.is_verified = True
+                user.save()
+                del request.session['user_register_info']
+                request.session.modified = True
+                hash_code = OTP._hash_otp(otp)
+                OTP.objects.filter(hashed_code=hash_code).first().delete()
+                return Response({'message': "user verified successfuly."},
+                                status=status.HTTP_200_OK)
+            
+            del request.session['user_register_info']
+            request.session.modified = True
+            return Response({'error': "invalid OTP code"},
+                            status=status.HTTP_400_BAD_REQUEST) 
+
+                
+
             

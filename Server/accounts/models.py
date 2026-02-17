@@ -61,10 +61,14 @@ class OTP(models.Model):
     def create_otp(cls, phone_number, length=6):
         digits = string.digits
         otp_code = ''.join(secrets.choice(digits) for _ in range(length))
+        # THIS IS JUST FOR NOW UNTIL SMS PANEL CONNECT.............
+        print(f"{'*'*20}otp code{'*'*20}")
+        print(otp_code)
+        print("*"*90)
         expiry_time = now() + timedelta(minutes=3)
         otp_hash = cls._hash_otp(otp_code)
 
-        cls.objects.create(email=phone_number, hashed_code=otp_hash, expires_at=expiry_time)
+        cls.objects.create(phone_number=phone_number, hashed_code=otp_hash, expires_at=expiry_time)
         return otp_code
     
     @classmethod
