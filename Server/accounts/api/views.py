@@ -6,6 +6,7 @@ from django.contrib.auth import get_user_model, authenticate
 from accounts.models import OTP
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
+from rest_framework.permissions import IsAuthenticated
 
 User = get_user_model()
 
@@ -83,10 +84,6 @@ class UserLoginView(APIView):
             except User.DoesNotExist:
                 return Response({'message': "user with this phone number not exists."},
                                 status=status.HTTP_404_NOT_FOUND)
-            print("user found.:", user_obj.phone_number)
-            print("user raw pass.:", password)
-            print("user pass stored:", user_obj.password)
-            print("check pass:", user_obj.check_password(password))
             user = authenticate(phone_number=user_phone, password=password)
             if user:
                 refresh = RefreshToken.for_user(user)
@@ -98,6 +95,26 @@ class UserLoginView(APIView):
                             status=status.HTTP_400_BAD_REQUEST)
 
 
+class UserLogoutView(APIView):
+    """log out user. put token in blacklist."""
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data.get('refresh')
+            if not refresh_token:
+                return Response({'detail': "no refresh token provided."},
+                                status=status.HTTP_400_BAD_REQUEST)
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            res = Response({'detail': "user loged out successfuly."},
+                           status=status.HTTP_200_OK)
+            res.delete_cookie('refresh')
+            return res
+        except Exception as e:
+            return Response({'detail': "invalid token or already loged out(token in blacklist)"},
+                            status=status.HTTP_400_BAD_REQUEST)
+        
 
                 
 
