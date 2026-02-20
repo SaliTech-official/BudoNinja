@@ -12,7 +12,7 @@ export function IranMap({ hoveredProvince, selectedProvince, onProvinceHover, on
   return (
     <div onMouseLeave={() => onProvinceHover(null)}>
       <IranMapSvg
-        className="w-full h-auto"
+        className="h-auto w-full"
         hoveredProvince={hoveredProvince}
         selectedProvince={selectedProvince}
         onProvinceHover={onProvinceHover}
