@@ -1,22 +1,20 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { PublicLayout } from './components/layout/PublicLayout';
 import HomePage from './pages/HomePage';
-// ... بقیه صفحات رو ایمپورت کن
+import NewsArchivePage from './pages/NewsArchivePage';
 
 export const router = createBrowserRouter([
-  // روت‌های عمومی
   {
-    element: <PublicLayout />, // 👈 لی‌اوت والد
+    element: <PublicLayout />,
     children: [
       {
         path: '/',
         element: <HomePage />,
       },
-    //   {
-    //     path: '/about',
-    //     element: <AboutPage />,
-    //   },
-      // ... بقیه صفحات عمومی (news, contact, ...)
+      {
+        path: '/news',
+        element: <NewsArchivePage />
+      }
     ],
   },
 
