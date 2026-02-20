@@ -39,7 +39,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def is_staff(self):
         return self.is_admin
+    
 
+class Profile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
 
 class OTP(models.Model):
     phone_number = models.CharField(max_length=11)
