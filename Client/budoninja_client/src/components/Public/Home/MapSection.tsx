@@ -1,4 +1,11 @@
 import { useState } from 'react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../UI/Select.tsx"
 import { IranMap } from '../../map/IranMap';
 import { InstructorCard } from '../../cards/InstructorCard';
 import { Users } from 'lucide-react';
@@ -9,6 +16,8 @@ const provinceData = {
   Alborz: { instructor: { name: "استاد کریمی", rank: "نماینده استان - دان ۵", province: "البرز", avatarUrl: "https://placehold.co/100x100/1E293B/FFFFFF?text=K" } },
 };
 
+const provinceNames = Object.keys(provinceData);
+
 export function MapSection() {
   const [hoveredProvince, setHoveredProvince] = useState<string | null>(null);
   const [selectedProvince, setSelectedProvince] = useState<string | null>(null);
@@ -17,6 +26,11 @@ export function MapSection() {
 
   const handleProvinceClick = (provinceName: string) => {
     setSelectedProvince(prev => (prev === provinceName ? null : provinceName));
+  };
+
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const provinceName = e.target.value;
+    setSelectedProvince(provinceName || null);
   };
 
   return (
@@ -53,6 +67,22 @@ export function MapSection() {
             onProvinceHover={setHoveredProvince}
             onProvinceClick={handleProvinceClick}
           />
+
+          <div className="mt-8 lg:hidden">
+            <Select
+              value={selectedProvince || undefined}
+              onValueChange={(value) => setSelectedProvince(value)}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="انتخاب کنید..." />
+              </SelectTrigger>
+              <SelectContent>
+                {provinceNames.map(name => (
+                  <SelectItem key={name} value={name}>{name}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
         </div>
       </div>
     </section>
