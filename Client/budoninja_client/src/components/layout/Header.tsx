@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { cn } from '../../lib/utils';
+import { NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '../UI/Button';
 import { HamburgerButton } from '../Header/HamburgerButton';
@@ -34,21 +35,28 @@ export function Header() {
         <div className="w-full flex h-20 items-center justify-between px-6 lg:px-20">
           
           <div className="flex items-center">
-            <Link to="/" className="flex items-center gap-2">
+            <NavLink to="/" className="flex items-center gap-2">
               <span className="text-xl font-bold text-neutral-50">BudoNinja</span>
-            </Link>
+            </NavLink>
           </div>
 
           <div>
             <nav className="hidden lg:flex gap-8">
                 {navLinks.map((link) => (
-                  <Link
+                  <NavLink
                     key={link.name}
                     to={link.href}
-                    className="text-sm font-medium text-neutral-200 transition-colors duration-200 ease-in-out hover:text-primary-500"
+                    className={({ isActive }) =>
+                    cn(
+                      "text-sm font-medium transition-colors duration-200 ease-in-out",
+                      isActive
+                        ? "text-primary-600"
+                        : "text-neutral-200 hover:text-primary-500"
+                    )
+                  }
                   >
                     {link.name}
-                  </Link>
+                  </NavLink>
                 ))}
               </nav>
           </div>
@@ -90,14 +98,21 @@ export function Header() {
             >
               <nav className="flex flex-col items-start gap-8">
                 {navLinks.map((link) => (
-                  <Link
+                  <NavLink
                     key={link.name}
                     to={link.href}
                     onClick={closeMenu}
-                    className="text-lg font-medium text-neutral-200 transition-colors duration-200 ease-in-out hover:text-primary-500"
+                    className={({ isActive }) =>
+                    cn(
+                      "text-lg font-medium transition-colors duration-200 ease-in-out",
+                      isActive
+                        ? "text-primary-600"
+                        : "text-neutral-200 hover:text-primary-500"
+                    )
+                  }
                   >
                     {link.name}
-                  </Link>
+                  </NavLink>
                 ))}
                 <Button variant="primary" size="lg" className="w-full mt-6">
                   ورود به پنل
