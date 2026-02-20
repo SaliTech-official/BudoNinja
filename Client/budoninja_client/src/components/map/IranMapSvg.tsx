@@ -51,6 +51,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Alborz")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
     <path
         d="m 468.28043,340.0844 0,0 38.55,17.43 4.85,3.63 13.52,19.71 -6.95,32.33 -0.3,3.24 0.8,0.85 1.53,1.01 1.35,3.42 1.17,8.21 -0.1,3.39 -1.03,3.84 -2.84,4.34 -0.49,2.5 0.49,2.57 0.04,3.17 1,2.09 0.35,1.5 -0.06,1.43 -0.99,1.08 -1.53,1.2 -7.88,4.59 -3.85,1.31 -1.96,1.05 1.26,1.95 2.78,2.11 1.21,1.95 -1.05,3.48 -3.91,5.11 0.23,13.28 -0.45,4.38 -3.9,15.31 0.01,3.77 0.82,3.2 0.12,1.42 -0.1,2.44 0.7,2.59 2.58,2.97 1.78,3.63 -0.96,2.88 -0.95,1.63 0.55,0.87 1.08,0.99 0.04,1.29 -1.09,1.3 -0.84,1.74 0.63,2.2 1.17,1.39 0.29,1.45 -0.54,1.45 -0.64,0.78 0.06,1.23 -0.46,0.61 -0.41,0.98 0.02,2.33 -0.2,1.4 -0.67,1.65 -1.38,-2.09 -0.49,-0.41 -0.93,0.01 -1.31,-0.52 -0.99,0.25 -1,1.05 -1.45,0.18 -1.68,-0.06 -1.4,-0.32 -0.57,-1.01 -0.1,-1.17 -0.34,-0.84 -0.08,-0.73 0.32,-0.7 0.05,-0.41 -0.64,-0.4 -2.11,-0.33 -1.3,-0.59 -1.19,-0.27 -1.17,0.55 -1.83,0.17 -2.78,-0.5 -4.49,0.32 -0.06,-0.77 0.69,-0.85 0.4,-2.11 0,-1.09 -0.19,-1.09 0.78,-7.39 0.47,-1.17 0.62,-0.76 0.19,-0.63 -0.05,-0.96 -0.82,-2.43 0.04,-0.76 0.73,0.04 2.12,1.29 0.29,-0.72 -0.97,-2.1 -1.99,-2.31 -2.53,-2.13 -2.33,-1.4 -2.23,-0.06 -1.39,0.95 -0.81,1.13 -1.6,1.5 -1.02,-0.32 -2.29,-1.69 -10.47,-5.56 -0.68,-2.21 -1.07,-14.26 -1.02,-2.99 -0.92,-1.88 -0.91,-0.46 -0.77,-1.11 0.59,-1.18 0.94,-0.79 -0.23,-1.92 -1.53,-2.33 -1.54,-1.69 -0.79,-1.52 -1.35,-1.76 -1.76,-0.96 -1.04,-0.13 -0.68,-0.57 -0.49,-0.81 -1.23,-5.97 0.3,-3.93 -0.27,-0.62 -3.53,-1.73 -1.84,-0.07 -1.56,1.23 -1.03,1.27 -3.67,3.49 -3.98,1.97 -2.17,0.39 -4.03,-0.62 -3.48,-2.11 -2.91,-2.68 -3.02,-3.91 -0.71,-3.76 0.84,-2.86 -0.65,-14.7 -0.95,-1.41 -1.02,0.13 -3.98,1.87 -6.77,5.14 -1.74,0.45 -1.52,-0.75 -1.48,-1.04 -1.48,-1.94 -3.03,-2.38 -6.12,-1.74 -2.87,-0.21 -6.85,-17.02 -1.97,-0.84 -7.76,-0.72 -1.51,-0.96 -0.81,-0.83 -0.74,-1.3 -0.38,-1.5 -2.75,-5.71 -0.93,-3.09 0.01,-0.77 1.49,-0.66 0.34,-0.29 3.42,-0.42 1.07,-0.76 -0.04,-1.11 -0.47,-1.56 -0.36,-2.22 0.43,-12.7 -1.09,-0.75 -1.09,-1.34 -0.81,-3.92 -2,-5.27 -1.89,-3.58 -0.09,-1.95 0.75,-2.87 1.57,-2.98 2.98,-3.33 19.03,-3.38 4.33,0.17 2.78,0.56 6.38,-0.87 5.74,-2.53 0.51,-2.75 0.44,-12.48 1.5,-3.23 17.98,-9.5 2.4,-2.55 7.04,-3.99 1.56,-1.69 0.73,-1.11 4.32,0.76 36.34,15.66 z"
@@ -60,6 +63,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Kerman")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
     <path
         d="m 596.00043,349.9544 0,0 1.86,0.27 0.88,0.35 0.66,0.53 1.21,1.54 0.24,0.74 -0.24,1.7 0.02,0.79 0.32,0.8 0.91,1.51 0.29,0.89 0.05,1.16 0.09,0.41 0.59,1.26 0.41,1.29 0.17,0.78 0,0.78 -0.24,0.83 -0.65,1.29 0.15,0.46 0.13,2.69 -0.2,0.12 -0.09,0.27 -0.05,0.72 0.05,0.04 0.08,0.21 -0.58,0.62 -2.79,3.38 -4.28,5.18 -3.88,4.7 0,0 -2.76,3.31 -3.66,4.39 -1.91,2.3 -2.8,3.35 -5.24,6.25 -0.01,0.01 -2.57,3.02 -1.96,2.3 2.74,3.24 1.79,2.13 2.21,2.65 2.55,3.06 2.65,3.18 2.79,3.33 0.66,0.54 0.71,0.29 0.6,0.42 0.31,0.99 -0.06,0.76 -0.41,1.36 0,0.76 0.33,0.79 1.07,1.19 0.44,0.67 0.1,0.43 0.09,0.97 0.18,0.44 0.36,0.41 0.31,0.11 0.31,0.04 0.37,0.2 0.34,0.55 0.18,0.66 0.26,0.56 0.58,0.25 0.33,0.26 0.1,0.34 -0.12,0.35 -0.31,0.33 -0.24,0.25 -0.1,0.24 0.08,0.22 0.26,0.21 0.44,0.2 0.38,0.3 0.3,0.4 1.43,3.3 0.19,0.75 0.08,0.65 0.18,0.58 0.97,1.09 0.97,2.13 0.99,1.21 3.49,3.18 1.41,1.83 2.15,2 1.07,1.24 0.62,0.34 2.03,0.57 1.62,0.93 1.02,0.33 2.25,0.19 1.08,0.23 2.82,1.27 4.47,0.9 0.94,0.49 0.4,0.47 0.29,0.51 0.34,0.47 0.55,0.31 0.57,0.19 0.35,0.22 0.24,0.39 0.22,0.67 0.49,0.83 2.14,2.32 0.68,0.44 5.54,-1.13 0.76,0.46 0.16,1.34 -0.5,3.95 -0.54,4.36 0.63,2.65 0.88,3.69 0.21,2.27 0.28,3.09 0.17,1.92 0.33,3.53 0.18,1.99 -0.21,1.58 -1.78,4.02 0.67,0.81 0.16,0.41 -0.06,0.62 -0.16,0.54 -0.2,0.43 -0.33,0.25 -0.54,0.04 1.46,1.3 0.51,0.28 0.27,0 0.47,-0.28 0.23,-0.04 0.28,0.09 0.79,0.44 1.07,0.24 0.92,-0.05 1.97,-0.4 0.88,-0.13 1.78,-0.55 0.9,-0.05 0.56,0.06 0.44,-0.01 1.85,-0.59 0.34,0.01 0.42,0.15 0.88,0.81 0.38,0.23 0.84,0.31 0.31,0.2 0.36,0.39 0.48,0.72 1.16,2.56 -0.59,-0.23 -0.74,0 -0.66,0.29 -0.37,0.62 -0.13,0.38 -0.36,0.52 -0.14,0.38 -0.05,0.44 0.17,4.3 0.31,0.71 0.42,0.62 0.28,0.61 -0.11,0.69 -0.5,0.46 -1.38,0.23 -0.56,0.29 -0.24,0.6 -0.27,5.5 -0.36,1.52 -0.76,0.74 -0.34,-0.01 -0.27,-0.14 -0.24,-0.17 -0.29,-0.14 -0.33,-0.03 -0.98,0.22 -1.34,-0.03 -1.32,-0.21 -3.06,-0.07 -2.66,-0.07 -2.3,-0.06 -0.37,0.11 -0.26,0.35 -0.35,0.64 -0.23,0.18 -0.25,0.13 -0.29,0.11 -1.05,0.24 -0.29,-0.02 -0.37,-0.18 -0.37,-0.08 -0.29,0.18 -0.27,0.28 -0.28,0.22 -0.69,0.25 -5.67,0.6 -0.32,0.09 -0.27,0.21 -0.27,0.49 -0.2,0.18 -0.35,0.1 -0.71,-0.04 -0.32,0.04 -0.28,0.12 -0.44,0.32 -0.27,0.16 -0.67,0.26 -0.29,0.19 -0.21,0.29 -0.07,0.33 0.11,0.25 0.12,0.21 0.04,0.23 -0.35,0.66 -1.07,1.05 -0.24,0.47 0.19,0.87 0.33,0.69 0.03,0.54 -0.74,0.39 -1.27,-0.18 -1.5,-0.53 -1.28,-0.17 -0.57,0.92 -0.12,0.92 -0.31,0.39 -1.4,0.24 -0.7,0.21 -0.63,0.32 -1.22,0.81 -4.08,1.16 -0.82,0.64 -0.49,1.02 -0.29,1.17 -0.31,2.29 -0.27,2.03 -0.32,2.34 -0.43,3.14 -0.36,2.63 -0.19,0.66 -0.51,0.63 -0.59,0.13 -0.65,-0.01 -0.72,0.17 -0.71,0.99 0.16,1.38 0.38,1.49 -0.1,1.3 -0.21,0.29 -0.5,0.5 -0.2,0.36 -0.11,0.54 -0.14,2.19 -0.21,3.21 -0.24,3.73 -0.2,3.16 -1.07,3.12 -0.01,0 -0.21,-0.54 -0.07,-0.63 -0.59,-0.43 -0.11,-0.23 -0.16,-0.11 -0.33,0.22 -0.1,0.21 -0.05,0.6 -0.1,0.23 0.19,0.18 0.33,0.39 0.19,0.17 -0.72,-0.08 -0.55,-0.22 -0.56,-0.01 -0.73,0.57 0.8,0.26 0.33,0.18 0.27,0.33 -0.18,0.36 -0.53,0.68 -0.15,0.4 0,0.19 -0.04,0.15 -0.27,0.26 -0.49,0.26 -1.84,0.55 0.49,0.34 -0.79,1.06 -5.7,-1.96 -1.98,-0.43 0.01,-0.61 -0.51,-0.93 -4.73,-1.69 -5.55,-0.93 -4.71,-1.12 -3.19,-0.39 -0.56,-0.31 0.52,-0.49 -0.82,-1.18 -0.1,-0.5 -0.01,-2.1 -0.11,-0.33 -1.23,-1.23 -0.53,-0.31 -0.59,-0.07 -0.61,0.06 -2.32,0.71 -0.58,0.33 -0.32,0.51 -0.53,0.64 -0.28,0.41 0,0.25 0.1,0.23 0.13,0.76 0.17,0.11 0.23,0.02 0.38,0.19 0.29,-0.01 0.14,0.1 0.14,0.23 0.35,0.39 -0.37,-0.06 0,0.09 0.98,0.5 -0.1,0.48 -0.39,-0.09 -1.09,-0.46 -1.38,-0.57 -0.68,-0.39 -1.47,0.03 -0.98,-0.8 0.32,-0.6 0.14,-0.15 -0.49,-0.22 -0.62,-0.09 -1.22,0.06 -0.94,0.18 -0.2,0.07 -0.3,0.35 0,0.21 0.09,0.19 0.7,0.48 -0.23,0.7 -0.92,-0.01 -0.68,-0.45 -0.37,-0.12 -1.16,-0.17 -0.26,-0.2 -0.38,-0.49 -0.53,-0.29 -1.25,0.08 -1.72,0.26 -1.82,0.07 -1.25,0.94 -1.42,-0.49 -1.42,-1.36 -1.53,-0.4 -3.91,0.24 -1.53,-0.01 -2.58,-0.6 -1.61,-1.64 -1.23,-0.68 -1.92,0.37 -4,0.64 -0.95,0.15 -0.15,-0.89 0.89,-0.39 0.02,-0.57 0.09,-0.6 -0.63,-0.31 -0.28,-0.37 -1.2,-2.05 -0.56,-0.56 -0.46,-0.6 -0.23,-0.77 -0.55,-0.68 -1.02,-0.39 -0.75,-0.76 -0.18,-1.36 -1.09,-1.8 -6.42,-5.68 -1.21,-0.76 -0.46,-0.2 -0.13,-0.68 0.16,-1.21 0.61,-0.93 0.41,-0.22 0.67,-1.65 0.2,-1.4 -0.02,-2.33 0.41,-0.98 0.46,-0.61 -0.06,-1.23 0.64,-0.78 0.54,-1.45 -0.29,-1.45 -1.17,-1.39 -0.63,-2.2 0.84,-1.74 1.09,-1.3 -0.04,-1.29 -1.08,-0.99 -0.55,-0.87 0.95,-1.63 0.96,-2.88 -1.78,-3.63 -2.58,-2.97 -0.7,-2.59 0.1,-2.44 -0.12,-1.42 -0.82,-3.2 -0.01,-3.77 3.9,-15.31 0.45,-4.38 -0.23,-13.28 3.91,-5.11 1.05,-3.48 -1.21,-1.95 -2.78,-2.11 -1.26,-1.95 1.96,-1.05 3.85,-1.31 7.88,-4.59 1.53,-1.2 0.99,-1.08 0.06,-1.43 -0.35,-1.5 -1,-2.09 -0.04,-3.17 -0.49,-2.57 0.49,-2.5 2.84,-4.34 1.03,-3.84 0.1,-3.39 -1.17,-8.21 -1.35,-3.42 -1.53,-1.01 -0.8,-0.85 0.3,-3.24 6.95,-32.33 1.06,-0.51 25.41,-7.22 1.85,0.33 1.19,1.27 0.77,0.62 3.14,0.86 4.17,3.08 5.33,7.61 2.78,2.38 4.6,-0.16 1.15,-0.45 0.53,-0.82 0.06,-1.22 -1.72,-7.64 -0.14,-3 0.7,-10.31 1.61,-5.8 2.17,-5.22 0.47,-4.78 -0.62,-2.31 5.75,0.85 6.64,0.97 3.9,0.57 z"
@@ -69,6 +75,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Sistan and Baluchestan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
          />
     <path
         d="m 456.82043,80.6944 0,0 0.54,-0.08 0.52,-0.16 0.58,-0.09 0.57,0.07 1.72,0.5 1.65,-0.03 0.51,-0.13 0.51,0 0.46,0.29 0.42,0.37 0.43,0.27 0.17,0.02 -4.11,2.54 -1.28,1.3 0.01,1.87 -0.39,1.59 -0.55,1.48 1.29,0.93 15.19,0.72 0.64,0.8 0.43,1.46 0.78,1.78 3.07,2.88 0.93,1.91 0.21,1.71 -0.75,1.37 -0.89,1.1 -0.31,0.74 -0.03,0.85 -0.34,1.26 -1.22,1.71 -2.03,6.01 -1.38,1.71 0.16,1.48 1.66,1.15 0.94,1.04 0.61,1.19 0.9,-0.14 0.49,-1.28 0.44,-0.2 0.29,1.09 0.68,1.04 1.12,0.54 0.13,0.98 -2.01,2.17 -0.22,1.18 0.44,0.67 1.21,0.72 0.28,1.32 -1.13,3.3 -1.27,1.2 -2.56,0.63 -9.38,-1.44 -22.43,-12.47 -5.4,-0.26 -8.16,6.63 -1.95,2.61 -0.27,1.92 0.26,1.5 -0.11,1.15 -5.16,0.87 -1.68,-0.65 -3.23,-0.55 -1.9,-0.64 -3.85,-3.31 -4.01,-4.51 -0.63,-1.34 0.12,-0.85 0.64,-2.53 0.17,-2.88 -0.17,-1.12 -0.21,-0.45 -0.22,-0.34 0.21,-0.63 0.87,-0.7 1.98,-0.59 0.35,-0.97 -1.65,-0.69 -1.33,0.23 -2.41,-1.7 -5.12,-6.83 1.03,-1 2.47,-4.4 2.46,-1.02 1.03,-0.95 1.02,-0.46 0.91,-0.14 3.97,-1.38 1.86,-2.6 -0.63,-2.61 -1.38,-1.06 -1.6,-0.79 -1.15,-1.37 -0.07,-1.94 0.69,-2.77 0.03,-1.02 -0.41,-1.8 -0.09,-1.56 0.22,-1.22 -0.22,-3.01 1.05,0.43 0.55,0.08 2.9,-0.49 0.53,-0.4 0.34,-0.67 0.12,-0.8 -0.16,-0.75 -0.92,-1.06 0.21,-0.59 2.14,-1.99 1.14,-0.8 1.23,-0.47 3.11,-0.1 0.57,0.14 0.48,0.29 0.42,0.34 0.46,0.21 0.54,-0.1 2.72,-1.19 1.62,-0.28 0.33,0.06 1.32,1.09 1.16,0.67 0.53,0.17 5.09,0.96 1.35,0.55 0.69,0.11 0.61,-0.34 0.47,-0.42 1.1,-0.74 0.4,-0.43 0.68,-1.19 0.1,-0.12 0.3,-0.32 0.59,-0.28 0.37,-0.05 0.37,0.05 0.72,0.24 0.38,0.25 0.09,0.28 0.02,0.32 0.14,0.38 0.78,1.33 0.61,1.49 0.4,0.6 1.11,1.2 0.39,1.29 0.73,1.03 0.16,0.76 -0.08,0.71 -0.67,2.27 0.86,1.15 4.87,1.94 z"
@@ -78,6 +87,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("North Khorasan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -88,6 +100,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Razavi Khorasan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -98,6 +113,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("South Khorasan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -108,6 +126,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Kordestan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -118,6 +139,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Gilan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -128,6 +152,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Kermanshah")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -138,6 +165,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("East Azarbaijan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -148,6 +178,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("West Azarbaijan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -158,6 +191,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Qazvin")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -168,6 +204,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Zanjan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -178,6 +217,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Hamadan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -188,6 +230,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Qom")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -198,6 +243,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Markazi")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -208,6 +256,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Ardebil")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -218,6 +269,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Hormozgan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -228,6 +282,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Ilam")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -238,6 +295,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Lorestan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -248,6 +308,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Khuzestan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -258,6 +321,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Chahar Mahall and Bakhtiari")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -268,6 +334,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Yazd")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -278,6 +347,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Tehran")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -288,6 +360,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Semnan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -298,6 +373,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Mazandaran")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -308,6 +386,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Golestan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -318,6 +399,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Fars")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
          />
 
     <path
@@ -328,6 +412,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Esfahan")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -338,6 +425,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Bushehr")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     <path
@@ -348,6 +438,9 @@ export const IranMapSvg = ({ hoveredProvince, selectedProvince, onProvinceHover,
         onClick={handleClick}
         className={getProvinceClasses("Kohgiluyeh and Buyer Ahmad")}
         style={{ transformOrigin: "center" }}
+        stroke="var(--color-neutral-400)"
+        strokeWidth="1"                   
+        vectorEffect="non-scaling-stroke"
         />
 
     </svg>
