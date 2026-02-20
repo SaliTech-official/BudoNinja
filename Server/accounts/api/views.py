@@ -1,7 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import UserRegisterSerializer, OTPInputSerializer, UserLoginSerializer
+from .serializers import (UserRegisterSerializer, OTPInputSerializer,
+                          UserLoginSerializer, UserChangePasswordSerializer)
 from django.contrib.auth import get_user_model, authenticate
 from accounts.models import OTP
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -109,11 +110,35 @@ class UserLogoutView(APIView):
             token.blacklist()
             res = Response({'detail': "user loged out successfuly."},
                            status=status.HTTP_200_OK)
-            res.delete_cookie('refresh')
             return res
         except Exception as e:
             return Response({'detail': "invalid token or already loged out(token in blacklist)"},
                             status=status.HTTP_400_BAD_REQUEST)
+        
+
+class UserChangePasswordView(APIView):
+    """changes user password.
+    user most login again after doing that."""
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserChangePasswordSerializer
+
+    def post(self, request):
+        ser_data = self.serializer_class(data=request.data,
+                                         context={'request': request})
+        ser_data.is_valid(raise_exception=True)
+        user = request.user
+        user.set_password(ser_data.validated_data['new_password'])
+        user.save()
+
+        user_tokens = OutstandingToken.objects.filter(user=user)
+        try:
+            for token in user_tokens:
+                BlacklistedToken.objects.get_or_create(token)
+        except:
+            return Response({'error': "error in puting user old token in blacklist."},
+                            status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response({'message': "user password changed successfuly."},
+                        status=status.HTTP_200_OK)
         
 
                 

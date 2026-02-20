@@ -23,3 +23,20 @@ class UserLoginSerializer(serializers.Serializer):
     phone_number = serializers.CharField(max_length=11)
     password = serializers.CharField(write_only=True)
 
+
+class UserChangePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+    new_password2 = serializers.CharField(required=True)
+
+    def validate_old_password(self, value):
+        user = self.context['request'].user
+        if user.check_password(value):
+            return value
+        raise serializers.ValidationError("password is invalid.")
+    
+    def validate(self, attrs):
+        if attrs['new_password'] == attrs['new_password2']:
+            return attrs
+        raise serializers.ValidationError("new passwords most match together.")
+

@@ -24,5 +24,5 @@ class Command(BaseCommand):
                 )
 
         self.stdout.write(
-            self.style.SUCCESS("✅ Provinces and cities loaded/updated successfully.")
+            self.style.SUCCESS("Provinces and cities loaded/updated successfully.")
         )
