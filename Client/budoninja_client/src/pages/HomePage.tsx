@@ -3,6 +3,7 @@ import { HeroSection } from '../components/Public/Home/HeroSection'
 import { AboutStatsSection } from '../components/Public/Home/AboutStatsSection'
 import { NewsSection } from '../components/Public/Home/NewsSection'
 import { MapSection } from '../components/Public/Home/MapSection'
+import { CtaSection } from '../components/Public/Home/CtaSection'
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
         <AboutStatsSection />
         <NewsSection />
         <MapSection />
+        <CtaSection />
     </div>
   )
 }
