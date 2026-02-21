@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { PublicLayout } from './components/layout/PublicLayout';
 import HomePage from './pages/HomePage';
 import NewsArchivePage from './pages/NewsArchivePage';
+import { SinglePostPage } from './pages/SinglePostPage';
 
 export const router = createBrowserRouter([
   {
@@ -14,7 +15,11 @@ export const router = createBrowserRouter([
       {
         path: '/news',
         element: <NewsArchivePage />
-      }
+      },
+      {
+        path: '/news/:slug',
+        element: <SinglePostPage />
+      },
     ],
   },
 
