@@ -2,12 +2,15 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import (UserRegisterSerializer, OTPInputSerializer,
-                          UserLoginSerializer, UserChangePasswordSerializer)
+                          UserLoginSerializer, UserChangePasswordSerializer,
+                          UserProfileSerializer)
 from django.contrib.auth import get_user_model, authenticate
-from accounts.models import OTP
+from accounts.models import OTP, Profile
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import RetrieveUpdateAPIView
+from django.shortcuts import get_object_or_404
 
 User = get_user_model()
 
@@ -139,6 +142,19 @@ class UserChangePasswordView(APIView):
                             status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         return Response({'message': "user password changed successfuly."},
                         status=status.HTTP_200_OK)
+    
+
+class UserProfileView(RetrieveUpdateAPIView):
+    """give and update user profile."""
+    serializer_class = UserProfileSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Profile.objects.select_related("user")
+    
+    def get_object(self):
+        return get_object_or_404(self.get_queryset(), user=self.request.user)
+    
         
 
                 
