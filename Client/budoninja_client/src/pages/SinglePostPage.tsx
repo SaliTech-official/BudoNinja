@@ -79,7 +79,7 @@ export function SinglePostPage() {
               </div>
 
               <div 
-                className="prose prose-lg max-w-none mt-8"
+                className="article-content prose-lg max-w-none mt-8"
                 dangerouslySetInnerHTML={{ __html: postData.content }}
               />
               
