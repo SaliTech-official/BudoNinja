@@ -9,13 +9,7 @@ export function FilterTabs({ itemCount }: { itemCount: number }) {
   return (
     <div className="border-b border-neutral-200">
       <div className="flex items-center justify-between">
-        {/* کانتینر اسکرول شونده */}
         <div className="flex-grow overflow-x-auto whitespace-nowrap scrollbar-hide">
-          {/* 
-            نکته: از scrollbar-hide (یک پلاگین یا کلاس سفارشی) 
-            برای مخفی کردن اسکرول‌بار استفاده کن تا زیباتر بشه.
-            در index.css: .scrollbar-hide::-webkit-scrollbar { display: none; }
-          */}
           <nav className="inline-flex gap-8" aria-label="Tabs">
             {tabs.map((tab) => (
               <button
@@ -33,7 +27,6 @@ export function FilterTabs({ itemCount }: { itemCount: number }) {
             ))}
           </nav>
         </div>
-        {/* شمارنده */}
         <p className="hidden lg:block text-sm text-neutral-500">نمایش {itemCount} مورد</p>
       </div>
     </div>
