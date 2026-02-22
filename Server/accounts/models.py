@@ -42,7 +42,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    email = models.EmailField()
+    father_name = models.CharField(max_length=64)
+    landline_phone = models.CharField(max_length=8, null=True, blank=True)
+
+    def __str__(self):
+        return self.user.full_name
+    
 
 class OTP(models.Model):
     phone_number = models.CharField(max_length=11)

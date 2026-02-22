@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth import get_user_model
-from . models import OTP
+from . models import OTP, Profile
 from .forms import UserCreationForm, UserChangeForm
 
 User = get_user_model()
@@ -33,6 +33,17 @@ class UserAdmin(BaseUserAdmin):
         if not request.user.is_superuser:
             form.base_fields['is_superuser'].disabled = True
         return form
+    
+
+@admin.register(Profile)
+class ProfileAdmin(admin.ModelAdmin):
+    list_display =("user_full_name", "user_phone_number", "father_name")
+
+    def user_full_name(self, obj):
+        return obj.user.full_name
+    
+    def user_phone_number(self, obj):
+        return obj.user.phone_number
 
 
 
