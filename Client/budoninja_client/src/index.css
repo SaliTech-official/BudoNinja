@@ -263,6 +263,14 @@ body {
     line-height: 16px;
   }
 
+  .scrollbar-hide::-webkit-scrollbar { 
+    display: none; 
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
   .article-content p {
     @apply mb-6 leading-relaxed text-neutral-800; /* فاصله پایین پاراگراف و ارتفاع خط */
   }
