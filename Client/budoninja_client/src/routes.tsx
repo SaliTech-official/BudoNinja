@@ -3,6 +3,7 @@ import { PublicLayout } from './components/layout/PublicLayout';
 import HomePage from './pages/HomePage';
 import NewsArchivePage from './pages/NewsArchivePage';
 import { SinglePostPage } from './pages/SinglePostPage';
+import { EventsPage } from './pages/EventsPage';
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: '/news/:slug',
         element: <SinglePostPage />
+      },
+      {
+        path: '/events',
+        element: <EventsPage />
       },
     ],
   },
