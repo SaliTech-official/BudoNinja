@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "@tailwindcss/typography";
 
 /* Font Faces */
 
@@ -82,7 +81,6 @@ body {
 }
 
 @theme{
-  
   /* Font Family */
   --font-family-sans: "Vazirmatn", system-ui, sans-serif;
 
@@ -263,5 +261,29 @@ body {
     font-size: var(--font-size-xs);
     font-weight: 600;
     line-height: 16px;
+  }
+
+  .article-content p {
+    @apply mb-6 leading-relaxed text-neutral-800; /* فاصله پایین پاراگراف و ارتفاع خط */
+  }
+  
+  .article-content h3 {
+    @apply mt-10 mb-4 text-2xl font-bold text-neutral-900;
+  }
+  
+  .article-content ul {
+    @apply list-disc list-inside space-y-2 mb-6;
+  }
+  
+  .article-content li {
+    @apply text-neutral-700;
+  }
+
+  .article-content a {
+    @apply text-primary-600 underline hover:text-primary-700;
+  }
+
+  .article-content img {
+    @apply my-8 rounded-lg shadow-md;
   }
 }
