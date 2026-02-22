@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import NewsArchivePage from './pages/NewsArchivePage';
 import { SinglePostPage } from './pages/SinglePostPage';
 import { EventsPage } from './pages/EventsPage';
+import { AboutPage } from './pages/AboutPage';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: '/events',
         element: <EventsPage />
+      },
+      {
+        path: '/about',
+        element: <AboutPage />
       },
     ],
   },
