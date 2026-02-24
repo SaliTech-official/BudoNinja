@@ -1,5 +1,5 @@
 import React from 'react';
-import coverImage from '../../assets/AuthPicture.png'; // 👈 یک عکس مناسب برای این بخش
+import coverImage from '../../assets/AuthPicture.png';
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -8,7 +8,6 @@ interface AuthLayoutProps {
 export function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="min-h-screen w-full lg:grid lg:grid-cols-2">
-      {/* ستون چپ: تصویر (در موبایل مخفی میشه) */}
       <div className="hidden lg:block relative">
         <img
           src={coverImage}
@@ -22,7 +21,6 @@ export function AuthLayout({ children }: AuthLayoutProps) {
         </div>
       </div>
 
-      {/* ستون راست: فرم (در موبایل میاد بالا) */}
       <div className="flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-8">
           {children}
