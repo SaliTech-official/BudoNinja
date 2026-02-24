@@ -63,9 +63,13 @@ export function Header() {
 
 
           <div className="flex items-center gap-4">
+            <NavLink
+              to="/login"
+            >
             <Button variant="primary" size="lg" className="hidden lg:flex">
               ورود به پنل
             </Button>
+            </NavLink>
             
             <div className="lg:hidden">
               <HamburgerButton isOpen={isMobileMenuOpen} onClick={toggleMenu} />
