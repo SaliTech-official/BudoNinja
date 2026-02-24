@@ -271,6 +271,10 @@ body {
     scrollbar-width: none;
   }
 
+  .dir-rtl{
+    direction: rtl;
+  }
+
   .article-content p {
     @apply mb-6 leading-relaxed text-neutral-800; /* فاصله پایین پاراگراف و ارتفاع خط */
   }
