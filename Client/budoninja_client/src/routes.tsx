@@ -6,6 +6,7 @@ import { SinglePostPage } from './pages/public/SinglePostPage';
 import { EventsPage } from './pages/public/EventsPage';
 import { AboutPage } from './pages/public/AboutPage';
 import { ContactPage } from './pages/public/ContactPage';
+import { LoginPage } from './pages/auth/Login';
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +48,7 @@ export const router = createBrowserRouter([
 
   // روت‌های احراز هویت (بدون لی‌اوت)
   {
-    // path: '/login',
-    // element: <LoginPage />,
+    path: '/login',
+    element: <LoginPage />,
   },
 ]);
