@@ -7,6 +7,7 @@ import { EventsPage } from './pages/public/EventsPage';
 import { AboutPage } from './pages/public/AboutPage';
 import { ContactPage } from './pages/public/ContactPage';
 import { LoginPage } from './pages/auth/Login';
+import { RegisterPage } from './pages/auth/RegisterPage';
 
 export const router = createBrowserRouter([
   {
@@ -50,5 +51,9 @@ export const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />,
+  },
+  {
+    path: '/register',
+    element: <RegisterPage />,
   },
 ]);
