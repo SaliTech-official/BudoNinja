@@ -1,11 +1,11 @@
 import { useState } from "react"
-import { Sidebar } from "../components/Public/NewsArchive/Sidebar"
-import { NewsList } from "../components/Public/NewsArchive/NewsList"
+import { Sidebar } from "../../components/Public/NewsArchive/Sidebar"
+import { NewsList } from "../../components/Public/NewsArchive/NewsList"
 import { Filter } from "lucide-react"
-import { Button } from "../components/UI/Button"
+import { Button } from "../../components/UI/Button"
 import { div } from "framer-motion/client"
 import { AnimatePresence } from 'framer-motion';
-import { FilterModal } from "../components/Public/NewsArchive/FilterModal"
+import { FilterModal } from "../../components/Public/NewsArchive/FilterModal"
 
 export default function NewsArchivePage() {
 

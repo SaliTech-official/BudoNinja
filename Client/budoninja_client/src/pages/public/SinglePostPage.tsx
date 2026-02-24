@@ -1,9 +1,9 @@
-import { Sidebar } from '../components/Public/NewsArchive/Sidebar';
+import { Sidebar } from '../../components/Public/NewsArchive/Sidebar';
 import { Link, useParams } from 'react-router-dom';
 import { Calendar, User, Folder, Share2 } from 'lucide-react';
-import { NewsCard } from '../components/cards/NewsCard';
-import { Badge } from '../components/UI/Badge';
-import { Button } from '../components/UI/Button';
+import { NewsCard } from '../../components/cards/NewsCard';
+import { Badge } from '../../components/UI/Badge';
+import { Button } from '../../components/UI/Button';
 import NewsCardPicture from '../assets/NewsCard.png';
 
 const postData = {

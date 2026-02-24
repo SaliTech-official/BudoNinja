@@ -1,6 +1,6 @@
-import { Input } from '../components/UI/Input';
-import { TextArea } from '../components/UI/TextArea';
-import { Button } from '../components/UI/Button';
+import { Input } from '../../components/UI/Input';
+import { TextArea } from '../../components/UI/TextArea';
+import { Button } from '../../components/UI/Button';
 import { Phone, Mail, MapPin, Share2 } from 'lucide-react';
 
 const ContactInfoItem = ({ icon, title, text }: { icon: React.ReactNode, title: string, text: string }) => (

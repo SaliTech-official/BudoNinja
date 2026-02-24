@@ -1,6 +1,6 @@
-import { FilterTabs } from '../components/Public/Events/FiltersTab';
-import { EventCard } from '../components/cards/EventCard';
-import { Button } from '../components/UI/Button';
+import { FilterTabs } from '../../components/Public/Events/FiltersTab';
+import { EventCard } from '../../components/cards/EventCard';
+import { Button } from '../../components/UI/Button';
 import { Link } from 'react-router-dom';
 
 const eventsData = [
