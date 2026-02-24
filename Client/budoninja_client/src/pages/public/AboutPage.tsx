@@ -1,7 +1,7 @@
 import React from 'react';
 import { Target, Eye } from 'lucide-react';
 import { InfoCard } from '../../components/cards/InfoCard';
-import NewsCardImage from '../assets/NewsCard.png';
+import NewsCardImage from '../../assets/NewsCard.png';
 
 export function AboutPage() {
   return (

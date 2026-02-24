@@ -4,7 +4,7 @@ import { Calendar, User, Folder, Share2 } from 'lucide-react';
 import { NewsCard } from '../../components/cards/NewsCard';
 import { Badge } from '../../components/UI/Badge';
 import { Button } from '../../components/UI/Button';
-import NewsCardPicture from '../assets/NewsCard.png';
+import NewsCardPicture from '../../assets/NewsCard.png';
 
 const postData = {
   slug: "team-champion",
