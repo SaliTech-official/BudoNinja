@@ -156,6 +156,9 @@ class UserProfileView(RetrieveUpdateAPIView):
     def get_object(self):
         return get_object_or_404(self.get_queryset(), user=self.request.user)
     
+    def update(self, request, *args, **kwargs):
+        pass
+    
 
 class UserResetPasswordView(APIView):
     """set new password instead old one
@@ -176,8 +179,6 @@ class UserResetPasswordView(APIView):
             # send otp code via sms
             return Response({"message": "otp code sent."},
                             status=status.HTTP_200_OK)
-        return Response({'error': "error in creating otp for user"},
-                        status=status.HTTP_400_BAD_REQUEST)
     
 
 class UserResetPasswordConfirmView(APIView):
@@ -218,5 +219,3 @@ class UserSetNewPasswordView(APIView):
                                 status=status.HTTP_200_OK)
             return Response({'error': "user not verified for reset password."},
                             status=status.HTTP_403_FORBIDDEN)
-        return Response({'error': "passwords are not same."},
-                        status=status.HTTP_400_BAD_REQUEST)
