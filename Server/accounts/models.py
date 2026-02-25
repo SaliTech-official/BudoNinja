@@ -75,6 +75,7 @@ class OTP(models.Model):
         print(f"{'*'*20}otp code{'*'*20}")
         print(otp_code)
         print("*"*90)
+        # .........................................................
         expiry_time = now() + timedelta(minutes=3)
         otp_hash = cls._hash_otp(otp_code)
 

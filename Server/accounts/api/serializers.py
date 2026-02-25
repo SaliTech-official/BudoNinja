@@ -54,3 +54,19 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class UserResetPasswordInputSerializer(serializers.Serializer):
+    phone_number = serializers.CharField(max_length=11)
+
+
+class UserResetPasswordConfirmSerializer(serializers.Serializer):
+    code = serializers.CharField()
+
+
+class UserSetNewPasswordSerializer(serializers.Serializer):
+    password = serializers.CharField()
+    confirm_password = serializers.CharField()
+
+    def validate(self, attrs):
+        if attrs['password'] != attrs['confirm_password']:
+            raise serializers.ValidationError("password most match together.")
+        return attrs

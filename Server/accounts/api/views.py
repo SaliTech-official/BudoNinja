@@ -3,7 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import (UserRegisterSerializer, OTPInputSerializer,
                           UserLoginSerializer, UserChangePasswordSerializer,
-                          UserProfileSerializer)
+                          UserProfileSerializer, UserResetPasswordInputSerializer,
+                          UserResetPasswordConfirmSerializer, UserSetNewPasswordSerializer)
 from django.contrib.auth import get_user_model, authenticate
 from accounts.models import OTP, Profile
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -155,8 +156,67 @@ class UserProfileView(RetrieveUpdateAPIView):
     def get_object(self):
         return get_object_or_404(self.get_queryset(), user=self.request.user)
     
+
+class UserResetPasswordView(APIView):
+    """set new password instead old one
+    user need to verify with OTP sms"""
+    serializer_class = UserResetPasswordInputSerializer
+
+    def post(self, request):
+        ser_data = self.serializer_class(data=request.data)
+        if ser_data.is_valid(raise_exception=True):
+            user_phone = ser_data.validated_data['phone_number']
+            otp = OTP.create_otp(user_phone)
+            request.session['user_reset_pass_info'] = {
+                "phone_number": user_phone
+            }
+            request.session.modified = True
+            print(request.session['user_reset_pass_info'])
+
+            # send otp code via sms
+            return Response({"message": "otp code sent."},
+                            status=status.HTTP_200_OK)
+        return Response({'error': "error in creating otp for user"},
+                        status=status.HTTP_400_BAD_REQUEST)
+    
+
+class UserResetPasswordConfirmView(APIView):
+    """confirm user with otp code that created in UserResetPasswordView.
+    and aloow user to set new password"""
+    serializer_class = UserResetPasswordConfirmSerializer
+
+    def post(self, request):
+        ser_data = self.serializer_class(data=request.data)
+        if ser_data.is_valid(raise_exception=True):
+            user_sessin = request.session['user_reset_pass_info']
+            user_code = ser_data.validated_data['code']
+            user_phone = user_sessin['phone_number']
+            if OTP.verify_otp(user_phone, user_code):
+                user_sessin['can_reset'] = True
+                request.session.modified = True
+                return Response({'message': "otp accepted. user can reset password."},
+                                status=status.HTTP_200_OK)
+            return Response({'error': "otp was inccorect. try again"},
+                            status=status.HTTP_400_BAD_REQUEST)
         
 
-                
+class UserSetNewPasswordView(APIView):
+    """user set new password instead of old password if  verified"""
+    serializer_class = UserSetNewPasswordSerializer
 
-            
+    def post(self, request):
+        ser_data = self.serializer_class(data=request.data)
+        if ser_data.is_valid(raise_exception=True):
+            user_session = request.session['user_reset_pass_info']
+            if 'can_reset' in user_session and user_session['can_reset'] == True:
+                user_instance = User.objects.filter(phone_number=user_session['phone_number']).first()
+                user_instance.set_password(ser_data.validated_data['confirm_password'])
+                user_instance.save()
+                del user_session
+                request.session.modified = True
+                return Response({'message': "user password changed successfuly."},
+                                status=status.HTTP_200_OK)
+            return Response({'error': "user not verified for reset password."},
+                            status=status.HTTP_403_FORBIDDEN)
+        return Response({'error': "passwords are not same."},
+                        status=status.HTTP_400_BAD_REQUEST)
