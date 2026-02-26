@@ -8,6 +8,8 @@ import { AboutPage } from './pages/public/AboutPage';
 import { ContactPage } from './pages/public/ContactPage';
 import { LoginPage } from './pages/auth/Login';
 import { RegisterPage } from './pages/auth/RegisterPage';
+import { DashboardLayout } from './components/layout/DashbordLayout';
+import { DashboardHomePage } from './pages/dashboard/DashboardHomePage';
 
 export const router = createBrowserRouter([
   {
@@ -40,11 +42,14 @@ export const router = createBrowserRouter([
     ],
   },
 
-  // روت‌های داشبورد (بعداً اضافه میشه)
   {
-    // path: '/dashboard',
-    // element: <DashboardLayout />,
-    // children: [...]
+    path: '/dashboard',
+    element: <DashboardLayout />,
+    children: [
+      { index: true, element: <DashboardHomePage /> },
+      { path: 'profile', element: <DashboardHomePage /> },
+      // ...
+    ]
   },
 
   // روت‌های احراز هویت (بدون لی‌اوت)
