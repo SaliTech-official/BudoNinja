@@ -54,6 +54,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class UserProfileUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = "__all__"
+
+
 class UserResetPasswordInputSerializer(serializers.Serializer):
     phone_number = serializers.CharField(max_length=11)
 
