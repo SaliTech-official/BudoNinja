@@ -43,8 +43,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    email = models.EmailField()
-    father_name = models.CharField(max_length=64)
+    email = models.EmailField(null=True, blank=True)
+    father_name = models.CharField(max_length=64, null=True, blank=True)
     landline_phone = models.CharField(max_length=8, null=True, blank=True)
 
     def __str__(self):

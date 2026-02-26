@@ -57,7 +57,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class UserProfileUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = "__all__"
+        fields = ('father_name', 'landline_phone', 'email')
 
 
 class UserResetPasswordInputSerializer(serializers.Serializer):

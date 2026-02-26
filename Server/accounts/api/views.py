@@ -4,7 +4,8 @@ from rest_framework import status
 from .serializers import (UserRegisterSerializer, OTPInputSerializer,
                           UserLoginSerializer, UserChangePasswordSerializer,
                           UserProfileSerializer, UserResetPasswordInputSerializer,
-                          UserResetPasswordConfirmSerializer, UserSetNewPasswordSerializer)
+                          UserResetPasswordConfirmSerializer, UserSetNewPasswordSerializer,
+                          UserProfileUpdateSerializer)
 from django.contrib.auth import get_user_model, authenticate
 from accounts.models import OTP, Profile
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -147,7 +148,6 @@ class UserChangePasswordView(APIView):
 
 class UserProfileView(RetrieveUpdateAPIView):
     """give and update user profile."""
-    serializer_class = UserProfileSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -156,8 +156,10 @@ class UserProfileView(RetrieveUpdateAPIView):
     def get_object(self):
         return get_object_or_404(self.get_queryset(), user=self.request.user)
     
-    def update(self, request, *args, **kwargs):
-        pass
+    def get_serializer_class(self):
+        if self.request.method in ['PUT', 'PATCH']:
+            return UserProfileUpdateSerializer
+        return UserProfileSerializer        
     
 
 class UserResetPasswordView(APIView):
