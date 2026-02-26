@@ -1,6 +1,7 @@
 import { Input } from "../UI/Input";
 import { Button } from "../UI/Button";
 import { Link } from "react-router-dom";
+import { ChevronLeft } from "lucide-react";
 
 interface Step1FormProps {
   onNext: () => void;
@@ -37,8 +38,9 @@ export function Step1Form({ onNext }: Step1FormProps) {
                     <Input type="password" id="password-confirm" required placeholder="رمز عبور خود را تکرار کنید"/>
                 </div>
             </div>
-            <Button type="submit" className="w-full" size="lg">
-                مرحله بعدی
+            <Button type="submit" className="w-full gap-2" size="lg">
+                <span>مرحله بعدی</span>
+                <ChevronLeft className='h-6 w-6 text-neutral-50'/>
             </Button>
         </div>
         <div className="flex justify-center gap-1 text-sm">
