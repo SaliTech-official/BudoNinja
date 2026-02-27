@@ -1,60 +1,65 @@
 import { Link, NavLink } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 import {
-  Book,
+  LayoutDashboard,
   User,
   Award,
   Calendar,
-  MessageCircle,
+  BookOpen,
+  MessageSquare,
   LogOut,
-  Home
 } from 'lucide-react';
 
 const sidebarLinks = [
-  { name: 'پیشخوان', href: '/dashboard', icon: Home },
-  { name: 'پروفایل من', href: '/profile', icon: User },
-  { name: 'احکام و مدارک', href: '/certificates', icon: Award },
-  { name: 'مسابقات و رویدادها', href: '/events', icon: Calendar },
-  { name: 'کلاس‌ها و دوره‌ها', href: '/courses', icon: Book },
-  { name: 'پیام ها و پشتیبانی', href: '/messages', icon: MessageCircle },
+  { name: 'پیشخوان', href: '/dashboard', icon: LayoutDashboard, end: true },
+  { name: 'پروفایل من', href: '/dashboard/profile', icon: User, end: false },
+  { name: 'احکام و مدارک', href: '/dashboard/certificates', icon: Award, end: false },
+  { name: 'مسابقات و رویدادها', href: '/dashboard/events', icon: Calendar, end: false },
+  { name: 'کلاس‌ها و دوره‌ها', href: '/dashboard/courses', icon: BookOpen, end: false },
+  { name: 'صندوق پیام', href: '/dashboard/messages', icon: MessageSquare, end: false },
 ];
 
 export function Sidebar() {
   return (
-    <aside className="hidden lg:flex lg:flex-col lg:w-72 lg:flex-shrink-0">
-      <div className="flex h-full flex-col bg-bg-primary text-neutral-200">
+    <aside className="w-72 h-full flex-shrink-0">
+      <div className="flex h-full flex-col justify-between bg-bg-primary text-neutral-200">
         
-        <div className="flex h-20 items-center px-6 border-b border-neutral-800">
-          <Link to="/" className="flex items-center gap-3">
-            {/* <Logo /> */}
-            <div className="w-10 h-10 rounded-full bg-gray-600"></div>
-            <span className="text-xl font-bold text-white">پرتال جامع بودونینجا</span>
-          </Link>
+        <div>
+          {/* هدر سایدبار */}
+          <div className="flex h-20 items-center px-6 border-b border-neutral-800">
+            <Link to="/" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-gray-600"></div>
+              <span className="text-xl font-bold text-white">پرتال جامع بودونینجا</span>
+            </Link>
+          </div>
+
+          {/* لیست منوها */}
+          <nav className="flex-1 px-4 py-6">
+            <ul className="space-y-2">
+              {sidebarLinks.map((item) => (
+                <li key={item.name}>
+                  <NavLink
+                    to={item.href}
+                    end={item.end}
+                    className={({ isActive }) =>
+                      cn(
+                        "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
+                        isActive
+                          ? "bg-primary-600 text-neutral-50"
+                          : "text-neutral-300 hover:bg-neutral-800"
+                      )
+                    }
+                  >
+                    <item.icon className="h-5 w-5" />
+                    <span>{item.name}</span>
+                  </NavLink>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
-        <nav className="flex-1 px-4 py-6">
-          <ul className="space-y-2">
-            {sidebarLinks.map((item) => (
-              <li key={item.name}>
-                <NavLink
-                  to={item.href}
-                  className={({ isActive }) =>
-                    cn(
-                      "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
-                      isActive
-                        ? "bg-primary-600 text-neutral-50"
-                        : "text-neutral-300 hover:bg-neutral-800"
-                    )
-                  }
-                >
-                  <item.icon className="h-5 w-5" />
-                  <span>{item.name}</span>
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
+        {/* فوتر سایدبار */}
         <div className="mt-auto border-t border-neutral-800 p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -68,7 +73,7 @@ export function Sidebar() {
                 <p className="text-xs text-neutral-400">هنرجو</p>
               </div>
             </div>
-            <button className="text-neutral-400 hover:text-white">
+            <button className="text-neutral-400 hover:text-white p-2 rounded-md hover:bg-neutral-800">
               <LogOut size={20} />
             </button>
           </div>
