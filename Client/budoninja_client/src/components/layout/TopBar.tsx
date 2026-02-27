@@ -57,7 +57,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
         <Button 
           variant="ghost" 
           size="icon" 
-          className="lg:hidden"
+          className="lg:hidden text-neutral-700 hover:bg-neutral-600 active:bg-neutral-400"
           onClick={onMenuClick}
           aria-label="باز کردن منو"
         >
@@ -81,7 +81,7 @@ export function Topbar({ onMenuClick }: TopbarProps) {
         <div className="hidden sm:flex items-center gap-2 text-sm font-medium text-neutral-600">
           <span>{todayDate}</span>
         </div>
-        <Button variant="ghost" size="icon" className="relative" aria-label="اعلان‌ها">
+        <Button variant="ghost" size="icon" className="relative text-neutral-600 hover:text-neutral-500 hover:bg-transparent active:bg-transparent" aria-label="اعلان‌ها">
           <Bell />
           <span className="absolute top-1.5 right-1.5 flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-400 opacity-75"></span>
