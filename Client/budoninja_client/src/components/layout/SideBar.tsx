@@ -1,22 +1,22 @@
 import { Link, NavLink } from 'react-router-dom';
 import { cn } from '../../lib/utils';
 import {
-  LayoutDashboard,
+  Home,
   User,
   Award,
   Calendar,
-  BookOpen,
-  MessageSquare,
+  Book,
+  MessageCircle,
   LogOut,
 } from 'lucide-react';
 
 const sidebarLinks = [
-  { name: 'پیشخوان', href: '/dashboard', icon: LayoutDashboard, end: true },
+  { name: 'پیشخوان', href: '/dashboard', icon: Home, end: true },
   { name: 'پروفایل من', href: '/dashboard/profile', icon: User, end: false },
   { name: 'احکام و مدارک', href: '/dashboard/certificates', icon: Award, end: false },
   { name: 'مسابقات و رویدادها', href: '/dashboard/events', icon: Calendar, end: false },
-  { name: 'کلاس‌ها و دوره‌ها', href: '/dashboard/courses', icon: BookOpen, end: false },
-  { name: 'صندوق پیام', href: '/dashboard/messages', icon: MessageSquare, end: false },
+  { name: 'کلاس‌ها و دوره‌ها', href: '/dashboard/courses', icon: Book, end: false },
+  { name: 'پیام ها و پشتیبانی', href: '/dashboard/messages', icon: MessageCircle, end: false },
 ];
 
 export function Sidebar() {
@@ -25,7 +25,6 @@ export function Sidebar() {
       <div className="flex h-full flex-col justify-between bg-bg-primary text-neutral-200">
         
         <div>
-          {/* هدر سایدبار */}
           <div className="flex h-20 items-center px-6 border-b border-neutral-800">
             <Link to="/" className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-gray-600"></div>
@@ -33,7 +32,6 @@ export function Sidebar() {
             </Link>
           </div>
 
-          {/* لیست منوها */}
           <nav className="flex-1 px-4 py-6">
             <ul className="space-y-2">
               {sidebarLinks.map((item) => (
@@ -59,7 +57,6 @@ export function Sidebar() {
           </nav>
         </div>
 
-        {/* فوتر سایدبار */}
         <div className="mt-auto border-t border-neutral-800 p-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
