@@ -44,10 +44,12 @@ export function Step3Form({ onBack, mobileNumber }: Step3FormProps) {
             <ChevronRight />
             <span>ویرایش شماره</span>
           </Button>
-          <Button type="submit" className="w-full gap-2">
-            <span>تایید و ورود به پنل</span>
-            <ChevronLeft />
-          </Button>
+          <Link to="/dashboard">
+            <Button className="w-full gap-2">
+              <span>تایید و ورود به پنل</span>
+              <ChevronLeft />
+            </Button>
+          </Link>
         </div>
         <div className='flex gap-1 text-sm justify-center'>
           <span className='font-400 text-neutral-500'>حساب دارید؟</span>
