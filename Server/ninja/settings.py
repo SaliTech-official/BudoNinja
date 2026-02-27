@@ -45,6 +45,11 @@ SESSION_ENGINE = "django.contrib.sessions.backends.db"
 AUTH_USER_MODEL = 'accounts.User'
 
 
+# MEDIA CONFIGS
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+
 
 # Application definition
 
