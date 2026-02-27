@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     # LOCAL APPS
     'data.apps.DataConfig',
     'accounts.apps.AccountsConfig',
+    'news.apps.NewsConfig',
     
 
     # THIRD PARTIES
