@@ -7,4 +7,4 @@ class GetNewsSerializer(serializers.ModelSerializer):
     category = CustomCategoryField(read_only=True)
     class Meta:
         model = News
-        fields = ('category', 'title', 'image', 'created_at')
+        fields = ('id', 'category', 'author', 'title', 'image', 'content', 'created_at')
