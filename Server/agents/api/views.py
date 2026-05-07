@@ -16,7 +16,7 @@ class GetProvinceTeachersView(ListAPIView):
         province = self.request.query_params.get('province')
 
         if not province:
-            raise ValidationError({'province': "this query params is required."})
+            return Teacher.objects.all()
         
         return Teacher.objects.filter(province__name=province)
 
