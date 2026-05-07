@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-
+    path('get_teachers/', views.GetProvinceTeachersView.as_view()),
 ]
