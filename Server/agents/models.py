@@ -13,3 +13,6 @@ class Teacher(models.Model):
     branch = models.CharField(max_length=128)
     role = models.CharField(max_length=68, choices=ROLE_CHOICES, default='normal')
     province = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True, blank=True, related_name='Teachers')
+
+    def __str__(self):
+        return f"{self.full_name}"
