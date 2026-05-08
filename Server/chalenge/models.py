@@ -10,7 +10,6 @@ class Chalenge(models.Model):
     GENDER_CHOICES = (
         ('male', 'اقایان'),
         ('female', 'بانوان'),
-        ('ob', 'کونی'),
     )
 
     title = models.CharField(max_length=128)
