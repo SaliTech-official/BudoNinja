@@ -16,7 +16,7 @@ class News(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="newses")
     author = models.CharField(max_length=128)
     title = models.CharField(max_length=360)
-    image = models.ImageField(upload_to="news_images/%Y/%m/%d/")
+    image = models.ImageField(upload_to="news_images/%Y/%m/%d/", null=True, blank=True)
     content = models.TextField()
     is_public = models.BooleanField(default=False)
 
