@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    
+    path('create_ticket/', views.CreateTicketView.as_view()),
 ]
