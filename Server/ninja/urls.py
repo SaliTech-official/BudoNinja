@@ -31,6 +31,7 @@ urlpatterns = [
     path('news/api/v1/', include("news.urls", namespace='news')),
     path('agents/api/v1/', include("agents.urls", namespace='agents')),
     path('chalenge/api/v1/', include("chalenge.urls", namespace='chalenge')),
+    path('inbox/api/v1/', include("inbox.urls", namespace='inbox')),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/schema/swagger-ui/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
     path("api/schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),

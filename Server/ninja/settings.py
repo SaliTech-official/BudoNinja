@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     'news.apps.NewsConfig',
     'agents.apps.AgentsConfig',
     'chalenge.apps.ChalengeConfig',
+    'inbox.apps.InboxConfig',
     
 
     # THIRD PARTIES
