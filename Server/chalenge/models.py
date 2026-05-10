@@ -1,4 +1,5 @@
 from django.db import models
+from django_jalali.db import models as jmodels
 
 
 class Chalenge(models.Model):
@@ -20,8 +21,8 @@ class Chalenge(models.Model):
 
     is_open = models.BooleanField(default=True)
 
-    date = models.DateField()
-    deadline = models.DateField()
+    date = jmodels.jDateField()
+    deadline = jmodels.jDateField()
 
     def __str__(self):
         return f"{self.title} - {self.place}"
