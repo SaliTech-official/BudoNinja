@@ -5,7 +5,7 @@ from .serializers import (UserRegisterSerializer, OTPInputSerializer,
                           UserLoginSerializer, UserChangePasswordSerializer,
                           UserProfileSerializer, UserResetPasswordInputSerializer,
                           UserResetPasswordConfirmSerializer, UserSetNewPasswordSerializer,
-                          UserProfileUpdateSerializer)
+                          UserProfileUpdateSerializer, UserDashbordSerializer)
 from django.contrib.auth import get_user_model, authenticate
 from accounts.models import OTP, Profile
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -160,6 +160,21 @@ class UserProfileView(RetrieveUpdateAPIView):
         if self.request.method in ['PUT', 'PATCH']:
             return UserProfileUpdateSerializer
         return UserProfileSerializer        
+    
+
+class UserDashbordInfoView(APIView):
+    """returns meta data of user info for dashbord
+    token most send"""
+    serializer_class = UserDashbordSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        profile_instance = get_object_or_404(Profile, user=request.user)
+        ser_data = self.serializer_class(instance=profile_instance)
+        return Response(ser_data.data,
+                        status=status.HTTP_200_OK)
+
+
     
 
 class UserResetPasswordView(APIView):

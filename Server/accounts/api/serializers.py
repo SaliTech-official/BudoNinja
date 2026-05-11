@@ -60,7 +60,7 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
         fields = ('father_name', 'landline_phone', 'email')
 
 
-class DashbordSerializer(serializers.ModelSerializer):
+class UserDashbordSerializer(serializers.ModelSerializer):
     technical_workshops = serializers.SerializerMethodField()
     jurisprudence = serializers.SerializerMethodField()
     chalenge_participated = serializers.SerializerMethodField()
