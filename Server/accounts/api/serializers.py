@@ -60,6 +60,25 @@ class UserProfileUpdateSerializer(serializers.ModelSerializer):
         fields = ('father_name', 'landline_phone', 'email')
 
 
+class DashbordSerializer(serializers.ModelSerializer):
+    technical_workshops = serializers.SerializerMethodField()
+    jurisprudence = serializers.SerializerMethodField()
+    chalenge_participated = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Profile
+        fields = ('technical_workshops', 'jurisprudence', 'chalenge_participated')
+
+    def get_technical_workshops(self, obj):
+        return obj.technical_workshops
+
+    def get_jurisprudence(self, obj):
+        return obj.jurisprudence
+
+    def get_chalenge_participated(self, obj):
+        return obj.chalenge_participated
+
+
 class UserResetPasswordInputSerializer(serializers.Serializer):
     phone_number = serializers.CharField(max_length=11)
 

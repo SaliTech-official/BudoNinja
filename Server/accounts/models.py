@@ -47,6 +47,11 @@ class Profile(models.Model):
     father_name = models.CharField(max_length=64, null=True, blank=True)
     landline_phone = models.CharField(max_length=8, null=True, blank=True)
 
+    # meta datas
+    technical_workshops = models.PositiveSmallIntegerField(default=0)
+    jurisprudence = models.PositiveSmallIntegerField(default=0)
+    chalenge_participated = models.PositiveSmallIntegerField(default=0)
+
     def __str__(self):
         return self.user.full_name
     
