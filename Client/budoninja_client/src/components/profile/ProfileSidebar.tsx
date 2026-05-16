@@ -1,12 +1,13 @@
 import { cn } from '../../lib/utils';
 import { NavLink } from 'react-router-dom';
-import { User, FileText, Shield, Camera } from 'lucide-react';
+import { User, FileText, Shield, Camera, Phone, ChevronLeft } from 'lucide-react';
 
 // لیست آیتم‌های منو با مسیرهای دقیق
 const navItems = [
   // پراپ `end` برای اینه که فقط در مسیر دقیق /profile فعال باشه
   { id: 'personal', label: 'اطلاعات فردی', icon: User, href: '/dashboard/profile', end: true },
   { id: 'documents', label: 'مدارک و فایل‌ها', icon: FileText, href: '/profile/documents', end: false },
+  { id: 'contact', label: 'اطلاعات تماس', icon: Phone, href: '/profile/contact', end: false },
   { id: 'security', label: 'امنیت و رمز عبور', icon: Shield, href: '/profile/security', end: false },
 ];
 
@@ -45,15 +46,18 @@ export function ProfileSidebar() {
             // جادوی استایل‌دهی فعال/غیرفعال
             className={({ isActive }) =>
               cn(
-                "flex items-center gap-3 rounded-md px-4 py-3 text-sm font-medium transition-colors",
+                "flex justify-between rounded-md px-4 py-3 text-sm font-medium transition-colors",
                 isActive
                   ? "bg-primary-50 text-primary-700" // استایل فعال
                   : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900" // استایل عادی
               )
             }
           >
-            <item.icon className="h-5 w-5" />
-            <span>{item.label}</span>
+            <div className='flex items-center gap-3'>
+              <item.icon className="h-5 w-5" />
+              <span>{item.label}</span>
+            </div>
+            <ChevronLeft className="h-5 w-5" />
           </NavLink>
         ))}
       </nav>
