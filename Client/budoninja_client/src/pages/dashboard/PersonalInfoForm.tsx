@@ -31,11 +31,11 @@ export default function PersonalInfoForm() {
             <div className='w-full h-px bg-neutral-200'></div>
           </div>
           <div className='flex flex-col gap-6'>
-            <div className='flex gap-8'>
+            <div className='flex flex-col gap-6 md:flex-row md:gap-8'>
               <InputField label='نام' placeholder='مثلا: محمد'/>
               <InputField label='نام خانوادگی' placeholder='مثلا: محمدی'/>
             </div>
-            <div className='flex gap-8'>
+            <div className='flex flex-col gap-6 md:flex-row md:gap-8'>
               <InputField label='کد ملی' placeholder='1278902254' disabled/>
               <div className='flex flex-col gap-1.5 w-full'>
                   <label htmlFor="birthdate-trigger" className="block text-sm font-medium text-neutral-500">
@@ -52,7 +52,7 @@ export default function PersonalInfoForm() {
                   </button>
                   </div>
             </div>
-            <div className='flex gap-8'>
+            <div className='flex flex-col gap-6 md:flex-row md:gap-8'>
               <InputField label='نام پدر' placeholder='مثلا: علی'/>
               <div className='flex flex-col gap-1.5 w-full'>
                   <label className="block text-sm font-medium text-neutral-500">
@@ -61,7 +61,7 @@ export default function PersonalInfoForm() {
                   <SegmentedControl options={genderOptions} value={gender} onValueChange={setGender}/>
               </div>
             </div>
-            <div className='flex gap-8'>
+            <div className='flex flex-col gap-6 md:flex-row md:gap-8'>
               <InputField label='شماره شناسنامه' placeholder='مثلا: 789393'/>
               <div className='flex flex-col gap-1.5 w-full'>
                     <label htmlFor="province" className="block text-sm font-medium text-neutral-500">
