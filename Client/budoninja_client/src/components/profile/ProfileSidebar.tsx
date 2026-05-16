@@ -2,6 +2,7 @@ import { cn } from '../../lib/utils';
 import { NavLink } from 'react-router-dom';
 import { User, FileText, Shield, Camera, Phone, ChevronLeft } from 'lucide-react';
 
+
 // لیست آیتم‌های منو با مسیرهای دقیق
 const navItems = [
   // پراپ `end` برای اینه که فقط در مسیر دقیق /profile فعال باشه
@@ -13,12 +14,12 @@ const navItems = [
 
 export function ProfileSidebar() {
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 space-y-8">
+    <div className="bg-white rounded-lg shadow-sm p-6 space-y-8 min-w-[320px] h-fit">
       {/* بخش آواتار */}
       <div className="flex flex-col items-center">
         <div className="relative">
           <img 
-            src="https://placehold.co/100x100/1E293B/FFFFFF?text=A" 
+            src="" 
             alt="User Avatar" 
             className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md" 
           />
