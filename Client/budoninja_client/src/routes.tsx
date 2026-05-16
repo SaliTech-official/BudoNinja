@@ -13,6 +13,7 @@ import { DashboardHomePage } from './pages/dashboard/DashboardHomePage';
 import { ProfilePage } from './pages/dashboard/ProfilePage';
 import PersonalInfoForm from './pages/dashboard/PersonalInfoForm';
 import DocumentForm from './pages/dashboard/DocumentForm';
+import ContactForm from './pages/dashboard/ContactForm';
 
 export const router = createBrowserRouter([
   {
@@ -55,7 +56,8 @@ export const router = createBrowserRouter([
          element: <ProfilePage />,
          children: [
           {index: true, element: <PersonalInfoForm />},
-          {path: 'documents', element: <DocumentForm />}
+          {path: 'documents', element: <DocumentForm />},
+          {path: 'contact', element: <ContactForm />}
          ]
         },
       // ...
