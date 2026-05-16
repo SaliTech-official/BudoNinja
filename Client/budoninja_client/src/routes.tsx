@@ -12,6 +12,7 @@ import { DashboardLayout } from './components/layout/DashbordLayout';
 import { DashboardHomePage } from './pages/dashboard/DashboardHomePage';
 import { ProfilePage } from './pages/dashboard/ProfilePage';
 import PersonalInfoForm from './pages/dashboard/PersonalInfoForm';
+import DocumentForm from './pages/dashboard/DocumentForm';
 
 export const router = createBrowserRouter([
   {
@@ -53,7 +54,8 @@ export const router = createBrowserRouter([
          path: 'profile',
          element: <ProfilePage />,
          children: [
-          {index: true, element: <PersonalInfoForm />}
+          {index: true, element: <PersonalInfoForm />},
+          {path: 'documents', element: <DocumentForm />}
          ]
         },
       // ...

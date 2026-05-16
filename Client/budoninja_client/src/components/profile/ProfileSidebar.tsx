@@ -6,9 +6,9 @@ import { User, FileText, Shield, Camera, Phone, ChevronLeft } from 'lucide-react
 const navItems = [
   // پراپ `end` برای اینه که فقط در مسیر دقیق /profile فعال باشه
   { id: 'personal', label: 'اطلاعات فردی', icon: User, href: '/dashboard/profile', end: true },
-  { id: 'documents', label: 'مدارک و فایل‌ها', icon: FileText, href: '/profile/documents', end: false },
-  { id: 'contact', label: 'اطلاعات تماس', icon: Phone, href: '/profile/contact', end: false },
-  { id: 'security', label: 'امنیت و رمز عبور', icon: Shield, href: '/profile/security', end: false },
+  { id: 'documents', label: 'مدارک و فایل‌ها', icon: FileText, href: '/dashboard/profile/documents', end: false },
+  { id: 'contact', label: 'اطلاعات تماس', icon: Phone, href: '/dashboard/profile/contact', end: false },
+  { id: 'security', label: 'امنیت و رمز عبور', icon: Shield, href: '/dashboard/profile/security', end: false },
 ];
 
 export function ProfileSidebar() {
