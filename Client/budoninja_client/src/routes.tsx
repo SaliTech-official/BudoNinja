@@ -14,6 +14,7 @@ import { ProfilePage } from './pages/dashboard/ProfilePage';
 import PersonalInfoForm from './pages/dashboard/PersonalInfoForm';
 import DocumentForm from './pages/dashboard/DocumentForm';
 import ContactForm from './pages/dashboard/ContactForm';
+import SecurityForm from './pages/dashboard/SecurityForm';
 
 export const router = createBrowserRouter([
   {
@@ -57,7 +58,8 @@ export const router = createBrowserRouter([
          children: [
           {index: true, element: <PersonalInfoForm />},
           {path: 'documents', element: <DocumentForm />},
-          {path: 'contact', element: <ContactForm />}
+          {path: 'contact', element: <ContactForm />},
+          {path: 'security', element: <SecurityForm />},
          ]
         },
       // ...
