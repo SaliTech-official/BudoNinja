@@ -10,6 +10,8 @@ import { LoginPage } from './pages/auth/Login';
 import { RegisterPage } from './pages/auth/RegisterPage';
 import { DashboardLayout } from './components/layout/DashbordLayout';
 import { DashboardHomePage } from './pages/dashboard/DashboardHomePage';
+import { ProfilePage } from './pages/dashboard/ProfilePage';
+import PersonalInfoForm from './pages/dashboard/PersonalInfoForm';
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +49,13 @@ export const router = createBrowserRouter([
     element: <DashboardLayout />,
     children: [
       { index: true, element: <DashboardHomePage /> },
-      { path: 'profile', element: <DashboardHomePage /> },
+      {
+         path: 'profile',
+         element: <ProfilePage />,
+         children: [
+          {index: true, element: <PersonalInfoForm />}
+         ]
+        },
       // ...
     ]
   },
