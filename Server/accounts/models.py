@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from data.models import Province, City
+from django_jalali.db import models as jmodels
 from .managers import UserManager
 from django.utils.timezone import now
 from datetime import timedelta
@@ -104,3 +105,15 @@ class OTP(models.Model):
         otp_instance.attempts += 1
         otp_instance.save()
         return False
+    
+
+class Membership(models.Model):
+    full_name = models.CharField(max_length=128)
+    level = models.CharField(max_length=68)
+    branch = models.CharField(max_length=68)
+    national_code = models.CharField(max_length=10, unique=True)
+    is_active = models.BooleanField(default=True)
+
+    # date
+    created_at = jmodels.jDateTimeField(auto_now_add=True)
+    deadline = jmodels.jDateField()
