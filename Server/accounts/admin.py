@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth import get_user_model
-from . models import OTP, Profile
+from . models import OTP, Profile, Membership
 from .forms import UserCreationForm, UserChangeForm
 
 User = get_user_model()
@@ -45,6 +45,16 @@ class ProfileAdmin(admin.ModelAdmin):
     def user_phone_number(self, obj):
         return obj.user.phone_number
 
+
+@admin.register(Membership)
+class MembershipAdmin(admin.ModelAdmin):
+    list_display = ('user__full_name', 'user__national_code', 'get_level', 'is_active')
+    list_select_related = ('user',)
+    list_filter = ('is_active',)
+    search_fields = ('user__national_code',)
+
+    def get_level(self, obj):
+        return obj.user.profile.level
 
 
 admin.site.register(User, UserAdmin)

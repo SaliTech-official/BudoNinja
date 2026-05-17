@@ -8,6 +8,9 @@ from datetime import timedelta
 import hashlib
 import string
 import secrets
+import uuid
+
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     GENDER_CHOICES = (
@@ -46,6 +49,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     email = models.EmailField(null=True, blank=True)
     father_name = models.CharField(max_length=64, null=True, blank=True)
+    level = models.CharField(max_length=128, null=True, blank=True, default="")
     landline_phone = models.CharField(max_length=8, null=True, blank=True)
 
     # meta datas
@@ -108,10 +112,9 @@ class OTP(models.Model):
     
 
 class Membership(models.Model):
-    full_name = models.CharField(max_length=128)
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE, related_name="membership")
+    public_id = models.UUIDField(default=uuid.uuid4, editable=False)
     level = models.CharField(max_length=68)
-    branch = models.CharField(max_length=68)
-    national_code = models.CharField(max_length=10, unique=True)
     is_active = models.BooleanField(default=True)
 
     # date
