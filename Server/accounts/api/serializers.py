@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from accounts.models import Profile
+from accounts.models import Profile, Membership
 
 
 User = get_user_model()
@@ -77,6 +77,24 @@ class UserDashbordSerializer(serializers.ModelSerializer):
 
     def get_chalenge_participated(self, obj):
         return obj.chalenge_participated
+    
+
+class GetMemberShipInfoSerializer(serializers.ModelSerializer):
+    full_name = serializers.SerializerMethodField()
+    national_code = serializers.SerializerMethodField()
+    level = serializers.SerializerMethodField()
+    class Meta:
+        model = Membership
+        fields = ('full_name', 'national_code', 'level', 'public_id', 'deadline', 'is_active')
+
+    def get_full_name(self, obj):
+        return obj.user.full_name
+    
+    def get_level(self, obj):
+        return obj.user.profile.level
+    
+    def get_national_code(self, obj):
+        return obj.user.national_code
 
 
 class UserResetPasswordInputSerializer(serializers.Serializer):

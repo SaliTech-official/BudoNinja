@@ -1,13 +1,14 @@
 from rest_framework.views import APIView
+from rest_framework.generics import RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import (UserRegisterSerializer, OTPInputSerializer,
                           UserLoginSerializer, UserChangePasswordSerializer,
                           UserProfileSerializer, UserResetPasswordInputSerializer,
                           UserResetPasswordConfirmSerializer, UserSetNewPasswordSerializer,
-                          UserProfileUpdateSerializer, UserDashbordSerializer)
+                          UserProfileUpdateSerializer, UserDashbordSerializer, GetMemberShipInfoSerializer)
 from django.contrib.auth import get_user_model, authenticate
-from accounts.models import OTP, Profile
+from accounts.models import OTP, Profile, Membership
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
 from rest_framework.permissions import IsAuthenticated
@@ -173,6 +174,20 @@ class UserDashbordInfoView(APIView):
         ser_data = self.serializer_class(instance=profile_instance)
         return Response(ser_data.data,
                         status=status.HTTP_200_OK)
+    
+
+class GetMemberShipInfoView(APIView):
+    """returns a information of user member ship card.
+    user moset be login and token most be in headers"""
+    permission_classes = [IsAuthenticated]
+    serializer_class = GetMemberShipInfoSerializer
+
+    def get(self, request):
+        membership_instance = get_object_or_404(Membership, user=request.user)
+        ser_data = self.serializer_class(instance=membership_instance)
+        return Response(ser_data.data,
+                        status=status.HTTP_200_OK)
+
 
 
 class UserResetPasswordView(APIView):
