@@ -175,8 +175,6 @@ class UserDashbordInfoView(APIView):
                         status=status.HTTP_200_OK)
 
 
-    
-
 class UserResetPasswordView(APIView):
     """set new password instead old one
     user need to verify with OTP sms"""
