@@ -114,7 +114,6 @@ class OTP(models.Model):
 class Membership(models.Model):
     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE, related_name="membership")
     public_id = models.UUIDField(default=uuid.uuid4, editable=False)
-    level = models.CharField(max_length=68)
     is_active = models.BooleanField(default=True)
 
     # date

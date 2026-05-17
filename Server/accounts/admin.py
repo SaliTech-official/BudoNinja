@@ -48,13 +48,11 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Membership)
 class MembershipAdmin(admin.ModelAdmin):
-    list_display = ('user__full_name', 'user__national_code', 'get_level', 'is_active')
+    list_display = ('user__full_name', 'user__national_code', 'is_active', 'public_id')
     list_select_related = ('user',)
     list_filter = ('is_active',)
-    search_fields = ('user__national_code',)
-
-    def get_level(self, obj):
-        return obj.user.profile.level
+    search_fields = ('public_id',)
+    readonly_fields = ('public_id',)
 
 
 admin.site.register(User, UserAdmin)
