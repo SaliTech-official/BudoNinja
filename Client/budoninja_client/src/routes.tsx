@@ -15,6 +15,7 @@ import PersonalInfoForm from './pages/dashboard/PersonalInfoForm';
 import DocumentForm from './pages/dashboard/DocumentForm';
 import ContactForm from './pages/dashboard/ContactForm';
 import SecurityForm from './pages/dashboard/SecurityForm';
+import Certificates from './pages/dashboard/Certificates';
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ export const router = createBrowserRouter([
           {path: 'security', element: <SecurityForm />},
          ]
         },
+        {
+          path: 'certificates',
+          element: <Certificates />
+        }
       // ...
     ]
   },
