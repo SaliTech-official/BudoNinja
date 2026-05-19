@@ -14,7 +14,14 @@ export function RegisterPage() {
     <AuthLayout>
         <div className='flex flex-col gap-10'>
             <RegisterHeader />
-            <Stepper currentStep={step}/>
+            <Stepper 
+              currentStep={step}
+              steps={[
+                "اطلاعات پایه",
+                "اطلاعات تکمیلی",
+                "تایید نهایی",
+              ]}
+            />
 
             {step === 1 && <Step1Form onNext={() => setStep(2)} />}
             {step === 2 && <Step2Form onNext={() => setStep(3)} onBack={() => setStep(1)} />}
