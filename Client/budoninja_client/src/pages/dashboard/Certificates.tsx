@@ -2,8 +2,11 @@ import CertificateCard from '../../components/cards/CertificateCard'
 import { Button } from '../../components/UI/Button'
 import { FilterGroup } from '../../components/UI/FilterGroup'
 import { Plus } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
 
 export default function Certificates() {
+
+    const navigate = useNavigate();
   return (
     <div className='flex flex-col gap-8 relative'>
         {/* هدر فیلترها */}
@@ -19,7 +22,7 @@ export default function Certificates() {
             />
             
             {/* دکمه دسکتاپ: در موبایل مخفی (hidden) و در دسکتاپ نمایش داده می‌شود (md:flex) */}
-            <Button size="lg" className='hidden md:flex gap-2'>
+            <Button size="lg" className='hidden md:flex gap-2' onClick={() => navigate("/dashboard/certificates/request")}>
                 <Plus className='w-5 h-5'/>
                 <span>درخواست حکم جدید</span>
             </Button>
@@ -73,7 +76,7 @@ export default function Certificates() {
                 date={{ year: "1403", month: "05", day: "12" }}
             />
         </div>
-        <Button variant="primary" className='md:hidden fixed bottom-6 left-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform z-50' onClick={() => console.log("Request New Certificate")}>
+        <Button variant="primary" className='md:hidden fixed bottom-6 left-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform z-50' onClick={() => navigate("/dashboard/certificates/request")}>
             <Plus className='w-8 h-8' />
         </Button>
     </div>
