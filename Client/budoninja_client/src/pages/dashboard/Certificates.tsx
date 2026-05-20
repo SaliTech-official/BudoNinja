@@ -9,7 +9,6 @@ export default function Certificates() {
     const navigate = useNavigate();
   return (
     <div className='flex flex-col gap-8 relative'>
-        {/* هدر فیلترها */}
         <div className='w-full flex justify-between items-center'>
             <FilterGroup
                 options={[
@@ -21,14 +20,12 @@ export default function Certificates() {
                 onChange={(value) => console.log(value)}
             />
             
-            {/* دکمه دسکتاپ: در موبایل مخفی (hidden) و در دسکتاپ نمایش داده می‌شود (md:flex) */}
             <Button size="lg" className='hidden md:flex gap-2' onClick={() => navigate("/dashboard/certificates/request")}>
                 <Plus className='w-5 h-5'/>
                 <span>درخواست حکم جدید</span>
             </Button>
         </div>
 
-        {/* کارت‌ها */}
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             <CertificateCard
                 title="کمربند سبز"
