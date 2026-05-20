@@ -25,7 +25,7 @@ export function FilterGroup({ options, defaultValue, onChange }: FilterGroupProp
   };
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex scroll-auto gap-2">
       {options.map((item) => (
         <FilterButton
           key={item.id}

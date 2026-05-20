@@ -9,10 +9,10 @@ export function FilterButton({ label, active, onClick }: FilterButtonProps) {
     <button
       onClick={onClick}
       className={`
-        px-4 py-2 rounded-lg text-sm transition-all h-fit
+        px-4 py-2 rounded-lg text-sm transition-all h-fit whitespace-nowrap
         ${active 
-          ? "bg-neutral-50 border border-neutral-200 text-neutral-900 shadow-[0_1px_2px_1px_rgba(0,0,0,0.05)]"
-          : "text-neutral-500"
+          ? "bg-primary-600 text-neutral-50"
+          : "text-neutral-600 bg-neutral-200"
         }
       `}
     >
