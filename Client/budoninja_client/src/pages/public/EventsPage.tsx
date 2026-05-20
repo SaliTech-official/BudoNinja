@@ -1,7 +1,6 @@
 import { FilterTabs } from '../../components/Public/Events/FiltersTab';
 import EventCard from '../../components/cards/EventCard';
 import { Button } from '../../components/UI/Button';
-import { Link } from 'react-router-dom';
 
 const eventsData = [
   { id: 1, title: "مسابقات قهرمانی کشور (آقایان)", location: "تهران، سالن آزادی", status: "open", date: "۲۰ آبان" },
@@ -11,16 +10,16 @@ const eventsData = [
 
 export function EventsPage() {
   return (
-    <>
-      <div className="bg-neutral-100 flex flex-col items-center"> 
-        <div className="w-full lg:w-250 px-6 md:px-8 py-16">
-          <div className="mb-8">
-            <FilterTabs itemCount={eventsData.length} />
-          </div>
+    <div className="bg-neutral-100 flex flex-col items-center"> 
+      <div className="w-full lg:w-250 px-6 md:px-8 py-16">
 
-          <div className="flex flex-col gap-6">
-            {eventsData.map(() => (
-              <EventCard
+        <div className="mb-8">
+          <FilterTabs itemCount={eventsData.length} />
+        </div>
+
+        <div className="flex flex-col gap-6">
+          {eventsData.map(() => (
+            <EventCard
               day={20}
               month="آبان"
               title="مسابقات قهرمانی کشور"
@@ -28,10 +27,9 @@ export function EventsPage() {
               tags={["کشوری", "آقایان"]}
               status="open"
               deadline="30 آبان"
-              href="/dashboard/events/1"
             />
-            ))}
-          </div>
+          ))}
+        </div>
 
         <Button 
           variant="outline" 
@@ -39,8 +37,7 @@ export function EventsPage() {
         >
           مشاهده بیشتر...
         </Button>
-        </div>
       </div>
-    </>
+    </div>
   );
 }
