@@ -1,5 +1,5 @@
 import { FilterTabs } from '../../components/Public/Events/FiltersTab';
-import { EventCard } from '../../components/cards/EventCard';
+import EventCard from '../../components/cards/EventCard';
 import { Button } from '../../components/UI/Button';
 import { Link } from 'react-router-dom';
 
@@ -19,12 +19,17 @@ export function EventsPage() {
           </div>
 
           <div className="flex flex-col gap-6">
-            {eventsData.map((event) => (
+            {eventsData.map(() => (
               <EventCard
-                key={event.id}
-                title={event.title}
-                location={event.location}
-              />
+              day={20}
+              month="آبان"
+              title="مسابقات قهرمانی کشور"
+              location="تهران، مجموعه ورزشی آزادی"
+              tags={["کشوری", "آقایان"]}
+              status="open"
+              deadline="30 آبان"
+              href="/dashboard/events/1"
+            />
             ))}
           </div>
 
