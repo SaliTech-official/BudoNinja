@@ -1,37 +1,158 @@
-import { Badge } from "../UI/Badge";
-import { Button } from "../UI/Button";
 import { MapPin } from "lucide-react";
+import { Button } from "../UI/Button";
+import { cn } from "../../lib/utils";
+import { Link } from "react-router-dom";
 
-// ... (Props interface)
+type EventStatus = "open" | "closing" | "closed";
 
-export function EventCard({ ...props }) {
+interface EventCardProps {
+  day: number | string;
+  month: string;
+
+  title: string;
+  location: string;
+
+  tags?: string[];
+
+  status: EventStatus;
+  deadline?: string;
+
+  buttonText?: string;
+
+  href?: string;
+  onClick?: () => void;
+
+  className?: string;
+}
+
+const statusConfig = {
+  open: {
+    label: "ثبت نام باز است",
+    className: "bg-green-200 text-green-700",
+  },
+  closing: {
+    label: "ظرفیت محدود",
+    className: "bg-orange-200 text-orange-700",
+  },
+  closed: {
+    label: "ثبت نام بسته است",
+    className: "bg-neutral-200 text-neutral-600",
+  },
+};
+
+export default function EventCard({
+  day,
+  month,
+  title,
+  location,
+  tags = [],
+  status,
+  deadline,
+  buttonText = "ثبت نام و جزییات",
+  href,
+  onClick,
+  className,
+}: EventCardProps) {
+  const statusData = statusConfig[status];
+  const isDisabled = status === "closed";
+
+  const ActionButton = (
+    <Button
+      size="sm"
+      disabled={isDisabled}
+      onClick={onClick}
+      className="w-full whitespace-nowrap md:w-auto"
+    >
+      {buttonText}
+    </Button>
+  );
+
   return (
-    <div className="flex flex-col md:flex-row items-center gap-6 rounded-lg border border-neutral-200 bg-white p-6 shadow-sm">
-      
-      {/* ستون ۱: تاریخ */}
-      <div className="flex-shrink-0 flex flex-col items-center justify-center w-20 h-20 rounded-xl bg-primary-100 text-primary-600">
-        <span className="text-3xl font-bold">۲۰</span>
-        <span className="text-sm">آبان</span>
-      </div>
+    <div
+      className={cn(
+        "w-full rounded-[24px] border border-neutral-200 bg-neutral-50 p-6 shadow-[0_4px_12px_rgba(0,0,0,0.06)]",
+        className
+      )}
+    >
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between">
 
-      {/* ستون ۲: اطلاعات */}
-      <div className="flex-1 w-full text-center md:text-right flex flex-col gap-4">
-        <div className="flex justify-center md:justify-start gap-2 order-2 md:order-1">
-          <Badge variant="default" className="bg-secondary-100 text-secondary-600">آقایان</Badge>
-          <Badge variant="default" className="bg-neutral-200 text-neutral-500">استانی</Badge>
-        </div>
-        <h3 className="text-xl font-bold text-neutral-900 order-1 md:order-2">{props.title}</h3>
-        <div className="flex justify-center md:justify-start items-center gap-2 text-sm text-neutral-500 order-3">
-          <MapPin size={20} />
-          <span>{props.location}</span>
-        </div>
-      </div>
+        {/* Right Section */}
+        <div className="flex flex-col items-center md:flex-row md:items-center md:gap-6">
 
-      {/* ستون ۳: اکشن */}
-      <div className="flex flex-col items-center md:items-end md:gap-3 w-full md:w-auto">
-        <Badge variant="success">ثبت نام باز است</Badge>
-        <p className="text-xs text-center w-full md:w-fit text-primary-600 mt-1 order-2 md:order-1">مهلت: تا ۲۵ آبان</p>
-        <Button className="w-full md:w-auto order-1 md:order-2 mb-2 mt-4 md:my-0">ثبت نام و جزییات</Button>
+          {/* Date Box */}
+          <div className="flex h-20 w-20 shrink-0 flex-col items-center justify-center rounded-[12px] bg-primary-100">
+            <span className="text-2xl font-bold text-primary-600 leading-none">
+              {day}
+            </span>
+            <span className="mt-1 text-sm font-medium text-primary-700 leading-none">
+              {month}
+            </span>
+          </div>
+
+          {/* Info */}
+          <div className="mt-4 flex w-full flex-col md:mt-0 md:gap-6">
+
+            {/* Mobile Title */}
+            <h3 className="text-right text-xl font-bold text-neutral-900 md:hidden">
+              {title}
+            </h3>
+
+            {/* Tags */}
+            {tags.length > 0 && (
+              <div className="mt-3 flex flex-wrap gap-2 md:mt-0 justify-start">
+                {tags.map((tag, i) => (
+                  <span
+                    key={i}
+                    className="rounded-base bg-secondary-100 px-2 py-1 text-xs font-medium text-secondary-600"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Desktop Title */}
+            <h3 className="mt-6 hidden text-xl font-bold text-neutral-900 md:mt-0 md:block">
+              {title}
+            </h3>
+
+            {/* Location */}
+            <div className="mt-3 flex items-center gap-1.5 md:mt-0 justify-start">
+              <MapPin className="h-5 w-5 text-neutral-500" />
+              <span className="text-sm text-neutral-500">{location}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Left Section */}
+        <div className="mt-4 flex flex-col w-full md:w-fit items-start md:items-end md:mt-0 md:min-w-[170px] md:gap-3">
+
+          {/* Status */}
+          <span
+            className={cn(
+              "rounded-[2px] px-2 py-[2px] text-xs font-medium",
+              statusData.className
+            )}
+          >
+            {statusData.label}
+          </span>
+
+          {/* Button */}
+          {href ? (
+            <Link to={href} className="mt-4 md:mt-0 w-full md:w-fit">
+              {ActionButton}
+            </Link>
+          ) : (
+            <div className="mt-4 md:mt-0 w-full md:w-fit">{ActionButton}</div>
+          )}
+
+          {/* Deadline */}
+          {deadline && (
+            <span className="mt-2 text-xs text-primary-500 md:mt-0 w-full text-center md:text-end">
+              مهلت: {deadline}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );
