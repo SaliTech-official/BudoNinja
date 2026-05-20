@@ -17,6 +17,7 @@ import ContactForm from './pages/dashboard/ContactForm';
 import SecurityForm from './pages/dashboard/SecurityForm';
 import Certificates from './pages/dashboard/Certificates';
 import CertificateRequest from './pages/dashboard/CertificateRequest';
+import Events from './pages/dashboard/Events';
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
         {
           path: 'certificates/request',
           element: <CertificateRequest />,
+        },
+        {
+          path: 'events',
+          element: <Events />,
         }
       // ...
     ]
