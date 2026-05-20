@@ -74,7 +74,7 @@ export default function PersonalInfoForm() {
                         <SelectItem value="esfahan">اصفهان</SelectItem>
                         </SelectContent>
                     </Select>
-                </div>
+              </div>
             </div>
           </div>
           <div className='flex flex-col gap-6'>
