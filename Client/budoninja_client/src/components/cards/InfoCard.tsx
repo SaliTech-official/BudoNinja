@@ -11,16 +11,15 @@ interface InfoCardProps {
 export function InfoCard({ IconComponent, title, text, className }: InfoCardProps) {
   return (
     <div className={cn(
-      "flex-1 rounded-2xl bg-primary-50 p-8 text-center",
+      "flex gap-3 items-center rounded-xl bg-neutral-100 p-4 text-center border border-neutral-200",
       className
     )}>
-      <div className="mx-auto flex h-14 w-14 items-center justify-center text-primary-600">
-        <IconComponent size={32} />
+      <IconComponent size={24} className="text-primary-600"/>
+      <div className='flex flex-col gap-1'>
+        <h3 className="text-xs font-semibold text-neutral-500 w-fit">{title}</h3>
+        <p className="text-base text-neutral-900 font-semibold">{text}</p>
       </div>
       
-      <h3 className="mt-6 text-xl font-bold text-neutral-900">{title}</h3>
-      
-      <p className="mt-2 text-base text-neutral-700 leading-relaxed">{text}</p>
     </div>
   );
 }
