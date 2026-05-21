@@ -19,6 +19,7 @@ import Certificates from './pages/dashboard/Certificates';
 import CertificateRequest from './pages/dashboard/CertificateRequest';
 import Events from './pages/dashboard/Events';
 import EventDetailPage from './pages/dashboard/EventDetailPage';
+import CoursesPage from './pages/dashboard/CoursesPage';
 
 export const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ export const router = createBrowserRouter([
         {
           path: 'events/:eventId',
           element: <EventDetailPage />,
+        },
+        {
+          path: 'courses',
+          element: <CoursesPage />,
         }
       // ...
     ]
