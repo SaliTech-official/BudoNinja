@@ -4,7 +4,9 @@ from data.models import Province, City
 from django_jalali.db import models as jmodels
 from .managers import UserManager
 from django.utils.timezone import now
+from django.utils.text import slugify
 from datetime import timedelta
+import os
 import hashlib
 import string
 import secrets
@@ -45,12 +47,25 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.is_admin
     
 
+def user_profile_path(instance, file_name):
+    user_name = f"{instance.user.full_name}-{instance.user.phone_number}"
+    ext = os.path.splitext(file_name)[1]
+    unique_name = f"{uuid.uuid4().hex}{ext}"
+
+    return os.path.join("profile_images", user_name, unique_name)
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     email = models.EmailField(null=True, blank=True)
     father_name = models.CharField(max_length=64, null=True, blank=True)
     level = models.CharField(max_length=128, null=True, blank=True, default="")
     landline_phone = models.CharField(max_length=8, null=True, blank=True)
+
+    # images
+    id_card_image = models.ImageField(upload_to=user_profile_path, null=True, blank=True)
+    birth_certificate_image = models.ImageField(upload_to=user_profile_path, null=True, blank=True) 
+    sport_insurance_image = models.ImageField(upload_to=user_profile_path, null=True, blank=True) 
 
     # meta datas
     technical_workshops = models.PositiveSmallIntegerField(default=0)
