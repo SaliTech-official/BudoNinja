@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'agents.apps.AgentsConfig',
     'chalenge.apps.ChalengeConfig',
     'inbox.apps.InboxConfig',
+    'courses.apps.CoursesConfig',
     
 
     # THIRD PARTIES
