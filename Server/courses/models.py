@@ -10,6 +10,7 @@ class Course(models.Model):
     duration = models.DurationField()
     capasity = models.SmallIntegerField(default=0)
     price = models.DecimalField(max_digits=13, decimal_places=0)
+    participants = models.SmallIntegerField(default=0)
 
     created_at = jmodels.jDateTimeField(auto_now_add=True)
     updated_at = jmodels.jDateTimeField(auto_now=True)
