@@ -21,7 +21,7 @@ import Events from './pages/dashboard/Events';
 import EventDetailPage from './pages/dashboard/EventDetailPage';
 import CoursesPage from './pages/dashboard/CoursesPage';
 import CourseDetailPage from './pages/dashboard/CourseDetailPage';
-import MessagesPage from './pages/dashboard/MessagesPage';
+import MessagesPage from './features/messages/pages/MessagePage';
 
 export const router = createBrowserRouter([
   {
@@ -96,10 +96,6 @@ export const router = createBrowserRouter([
         {
           path: 'messages',
           element: <MessagesPage />,
-          // children: [
-          //   { index: true, element: <NoChatSelected /> },
-          //   { path: ':chatId', element: <ChatDetail /> }
-          // ]
         }
       // ...
     ]
