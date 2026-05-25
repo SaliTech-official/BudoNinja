@@ -60,7 +60,7 @@ export function ProfileCompletionWidget({ isProfileComplete, completionPercentag
 
       <div className="w-full sm:w-auto flex-shrink-0">
         <Button className="w-full">
-          <Link to="/profile">تکمیل اطلاعات</Link>
+          <Link to="profile">تکمیل اطلاعات</Link>
         </Button>
       </div>
     </div>
