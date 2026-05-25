@@ -4,10 +4,13 @@ import { Button } from '../../components/UI/Button';
 import { Award, Star, Plus, X, Trophy, ClipboardPlus, RefreshCw } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ProfileCompletionWidget } from '../../components/widgets/ProfileCompletionWidget';
+import { useNavigate } from 'react-router-dom';
 
 import membershipCardImage from '../../assets/MembershipCard.jpg'; 
 
 export function DashboardHomePage() {
+  const navigate = useNavigate()
+
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
 
   const userProfileStatus = { isComplete: false, percentage: 35 };
@@ -37,19 +40,19 @@ export function DashboardHomePage() {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <Button variant="outline" className="h-16 justify-center text-sm gap-2">
+              <Button variant="outline" onClick={() => navigate('certificates/request')} className="h-16 justify-center text-sm gap-2">
                 <span>
                   درخواست حکم 
                 </span>
                 <Plus className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" className="h-16 justify-center text-sm gap-2 border-blue-600 text-blue-600 hover:bg-blue-600 active:bg-blue-400">
+              <Button variant="outline" onClick={() => navigate('membership/renew')} className="h-16 justify-center text-sm gap-2 border-blue-600 text-blue-600 hover:bg-blue-600 active:bg-blue-400">
                 <span>
                   تمدید کارت 
                 </span>
                 <RefreshCw className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" className="h-16 justify-center text-sm gap-2 border-green-600 text-green-600 hover:bg-green-600 active:bg-green-400">
+              <Button variant="outline" onClick={() => navigate('events')} className="h-16 justify-center text-sm gap-2 border-green-600 text-green-600 hover:bg-green-600 active:bg-green-400">
                 <span>
                   ثبت نام مسابقه 
                 </span>
