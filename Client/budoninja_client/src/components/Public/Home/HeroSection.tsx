@@ -1,4 +1,5 @@
 import { Button } from "../../UI/Button";
+import { Link } from "react-router-dom";
 
 export function HeroSection() {
   return (
@@ -21,10 +22,10 @@ export function HeroSection() {
         
         <div className="mt-8 flex flex-col md:flex-row gap-4 w-full">
           <Button size="lg" variant="primary" className="w-full md:w-fit">
-            ثبت نام در کلاس‌ها
+            <Link to='dashboard/events'>ثبت نام در کلاس‌ها</Link>
           </Button>
           <Button size="lg" variant="outline" className="border-neutral-600 text-neutral-200 hover:bg-neutral-50/20 w-full md:w-fit">
-            اطلاعات بیشتر
+            <Link to='events'>اطلاعات بیشتر</Link>
           </Button>
         </div>
       </div>
