@@ -22,6 +22,7 @@ import EventDetailPage from './pages/dashboard/EventDetailPage';
 import CoursesPage from './pages/dashboard/CoursesPage';
 import CourseDetailPage from './pages/dashboard/CourseDetailPage';
 import MessagesPage from './features/messages/pages/MessagePage';
+import MembershipRenewal from './pages/dashboard/MembershipRenewal';
 
 export const router = createBrowserRouter([
   {
@@ -96,6 +97,10 @@ export const router = createBrowserRouter([
         {
           path: 'messages',
           element: <MessagesPage />,
+        },
+        {
+          path: 'membership/renew',
+          element: <MembershipRenewal />,
         }
       // ...
     ]
