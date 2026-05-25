@@ -1,6 +1,7 @@
 import { StatCard } from "../../cards/StatCard";
 import { Button } from "../../UI/Button";
 import PatternHome from "../../../assets/patterns/PatternHome.png";
+import { Link } from "react-router-dom";
 
 export function AboutStatsSection() {
   return (
@@ -19,9 +20,11 @@ export function AboutStatsSection() {
           <p className="text-base text-center md:text-start text-neutral-500 leading-relaxed">
             سبک نینجوتسو در سال ۱۳۶۹ توسط استاد اکبر فرجی بنیانگذاری شد و هم‌اکنون با هزاران هنرجو و صدها مربی فعال، به عنوان یکی از منسجم‌ترین سازمان‌های رزمی کشور شناخته می‌شود.
           </p>
-          <Button variant="outline" className="mt-4 border-primary-600 text-primary-600 hover:bg-primary-50 hover:text-primary-600">
-            بیشتر بخوانید  &larr;
-          </Button>
+          <Link to='about'>
+            <Button variant="outline" className="mt-4 border-primary-600 text-primary-600 hover:bg-primary-50 hover:text-primary-600">
+              بیشتر بخوانید  &larr;
+            </Button>
+          </Link>
         </div>
 
         <div className="flex flex-col gap-4 w-full md:w-fit">
