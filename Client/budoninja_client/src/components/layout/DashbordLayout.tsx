@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Sidebar } from './SideBar';
 import { Topbar } from './TopBar';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export function DashboardLayout() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation();
+
+  const isChatPage = location.pathname.includes('/messages');
 
   return (
     <div className="flex h-screen bg-neutral-100">
@@ -39,7 +42,8 @@ export function DashboardLayout() {
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <Topbar onMenuClick={() => setIsSidebarOpen(true)} />
-        <main className="flex-1 overflow-y-auto p-6 md:p-8">
+        
+        <main className={`flex-1 overflow-y-auto ${isChatPage ? 'p-0' : 'p-6 md:p-8'}`}>
           <Outlet />
         </main>
       </div>
