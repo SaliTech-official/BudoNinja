@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail } from 'lucide-react';
-// import { Logo } from '@/assets/logo.svg';
 
 export function Footer() {
   return (
@@ -38,8 +37,8 @@ export function Footer() {
             <h3 className="text-base font-semibold text-neutral-50 mb-4 text-center sm:text-start">خدمات اعضا</h3>
             <nav className="flex flex-col gap-3 text-center sm:text-start">
               <Link to="/login" className="text-sm text-neutral-400 hover:text-primary-500 transition-colors">ورود به پنل</Link>
-              <Link to="/profile/certificates" className="text-sm text-neutral-400 hover:text-primary-500 transition-colors">استعلام حکم</Link>
-              <Link to="/membership/renew" className="text-sm text-neutral-400 hover:text-primary-500 transition-colors">تمدید عضویت</Link>
+              <Link to="/dashboard/certificates" className="text-sm text-neutral-400 hover:text-primary-500 transition-colors">استعلام حکم</Link>
+              <Link to="/dashboard/membership/renew" className="text-sm text-neutral-400 hover:text-primary-500 transition-colors">تمدید عضویت</Link>
             </nav>
           </div>
 
