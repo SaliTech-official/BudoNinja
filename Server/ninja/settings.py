@@ -190,7 +190,7 @@ SIMPLE_JWT = {
 
 # SWAGGER CONFIGS
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'eduapp',
-    'DESCRIPTION': 'api doc for eduapp.',
+    'TITLE': 'BudoNinja',
+    'DESCRIPTION': 'docs for BudoNinja:)',
     'VERSION': '1.0.0',
 }
