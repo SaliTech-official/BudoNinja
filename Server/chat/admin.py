@@ -7,11 +7,11 @@ class ConversationAdmin(admin.ModelAdmin):
     list_display = ('id', 'created_at', 'updated_at', 'last_message')
 
 
-@admin.register(Conversation)
+@admin.register(ConversationParticipant)
 class ConversationParticipantAdmin(admin.ModelAdmin):
     list_display = ('conversation', 'user', 'joined_at')
 
 
-@admin.register(Conversation)
+@admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
     list_display = ('conversation', 'sender', 'created_at')
