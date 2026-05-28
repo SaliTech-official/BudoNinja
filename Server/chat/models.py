@@ -10,7 +10,7 @@ class Conversation(models.Model):
     created_at = jmodels.jDateTimeField(auto_now_add=True)
     updated_at = jmodels.jDateTimeField(auto_now=True)
 
-    last_message = models.ForeignKey('message', on_delete=models.SET_NULL, null=True, blank=True, related_name='conversation')
+    last_message = models.ForeignKey('message', on_delete=models.SET_NULL, null=True, blank=True, related_name='+')
 
     def __str__(self):
         return f"Conversation - {self.id}"
@@ -41,3 +41,9 @@ class Message(models.Model):
     
     class Meta:
         ordering = ('created_at',)
+        indexes = [
+            models.Index(fields=['conversation', 'created_at'])
+        ]
+    
+    def __str__(self):
+        return f"message {self.id} for {self.sender.full_name}"
