@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'chalenge.apps.ChalengeConfig',
     'inbox.apps.InboxConfig',
     'courses.apps.CoursesConfig',
+    'chat.apps.ChatConfig',
     
 
     # THIRD PARTIES
