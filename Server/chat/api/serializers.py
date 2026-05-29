@@ -23,7 +23,7 @@ class CreateConversationSerializer(serializers.Serializer):
     user_id = serializers.IntegerField()
 
     def validate_user_id(self, value):
-        if not User.objects.get(id=value).exists():
+        if not User.objects.filter(id=value).exists():
             raise serializers.ValidationError(
                 "user not found."
             )
