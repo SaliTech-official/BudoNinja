@@ -5,6 +5,12 @@ from accounts.models import Profile, Membership
 
 User = get_user_model()
 
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'full_name')
+
 class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
