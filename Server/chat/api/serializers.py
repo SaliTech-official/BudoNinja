@@ -17,6 +17,20 @@ class ConversationSerializer(serializers.ModelSerializer):
     def get_participants(self, obj):
         users = User.objects.filter(conversations__conversation=obj)
         return UserSerializer(instance=users, many=True).data
+    
+
+class ConversationListSerializer(serializers.ModelSerializer):
+    participants = serializers.SerializerMethodField()
+    created_at = serializers.DateTimeField(format="%Y-%m-%d")
+    updated_at = serializers.DateTimeField(format="%Y-%m-%d")
+
+    class Meta:
+        model = Conversation
+        fields = ('id', 'participants', 'created_at', 'updated_at', 'last_message')
+
+    def get_participants(self, obj):
+        users = User.objects.filter(conversations__conversation=obj)
+        return UserSerializer(instance=users, many=True).data
 
 
 class CreateConversationSerializer(serializers.Serializer):
@@ -28,3 +42,5 @@ class CreateConversationSerializer(serializers.Serializer):
                 "user not found."
             )
         return value
+    
+

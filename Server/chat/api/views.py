@@ -1,9 +1,10 @@
 from rest_framework.response import Response
-from rest_framework.generics import GenericAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
-from .serializers import (CreateConversationSerializer, ConversationSerializer)
+from .serializers import (CreateConversationSerializer, ConversationSerializer,
+                          ConversationListSerializer)
 from chat.models import Conversation, ConversationParticipant
 
 
@@ -45,3 +46,16 @@ class CreateConversationView(GenericAPIView):
 
         return Response(ConversationSerializer(conversation).data,
                         status=status.HTTP_201_CREATED)
+    
+
+class ConversationListView(ListAPIView):
+    """returns list of user chats. jwt required."""
+    serializer_class = ConversationListSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Conversation.objects.filter(
+            participants__user=self.request.user
+        ).prefetch_related(
+            "participants__user"
+        ).order_by("-updated_at")
