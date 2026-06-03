@@ -1,0 +1,14 @@
+from django.contrib import admin
+from .models import Category, News
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('title', 'category' , 'author', 'is_public', 'created_at')
+    list_filter = ('is_public',)
+    search_fields = ('title', 'category')
