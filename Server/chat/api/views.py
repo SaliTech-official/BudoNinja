@@ -67,13 +67,13 @@ class CreateMessageView(CreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        conversatin = serializer.validated_data['conversation']
+        conversation = serializer.validated_data['conversation']
 
-        is_participant = Conversation.objects.filter(conversatin=conversatin,
+        is_participant = ConversationParticipant.objects.filter(conversation=conversation,
                                                      user=self.request.user).exists()
         if not is_participant:
             raise PermissionError("you are not participant of this conversation.")
         
         message = serializer.save(sender=self.request.user)
-        conversatin.last_message = message
-        conversatin.save(update_fields=['last_message', 'updated_at'])
+        conversation.last_message = message
+        conversation.save(update_fields=['last_message', 'updated_at'])

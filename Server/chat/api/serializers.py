@@ -48,5 +48,10 @@ class CreateMessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = ('conversation', 'text', 'file')
+
+    def validate(self, attrs):
+        if not attrs.get('text') and not attrs.get('file'):
+            raise serializers.ValidationError("message or file is required.")
+        return attrs
     
 
