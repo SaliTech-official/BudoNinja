@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from chat.models import Conversation
+from chat.models import Conversation, Message
 from accounts.api.serializers import UserSerializer
 
 
@@ -42,5 +42,11 @@ class CreateConversationSerializer(serializers.Serializer):
                 "user not found."
             )
         return value
+    
+
+class CreateMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ('conversation', 'text', 'file')
     
 
