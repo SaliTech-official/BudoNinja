@@ -1,10 +1,10 @@
 from rest_framework.response import Response
-from rest_framework.generics import GenericAPIView, ListAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView, CreateAPIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
 from .serializers import (CreateConversationSerializer, ConversationSerializer,
-                          ConversationListSerializer)
+                          ConversationListSerializer, CreateMessageSerializer)
 from chat.models import Conversation, ConversationParticipant
 
 
@@ -59,3 +59,21 @@ class ConversationListView(ListAPIView):
         ).prefetch_related(
             "participants__user"
         ).order_by("-updated_at")
+    
+
+class CreateMessageView(CreateAPIView):
+    """endpoint for createing message for conversation that user have."""
+    serializer_class = CreateMessageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        conversatin = serializer.validated_data['conversation']
+
+        is_participant = Conversation.objects.filter(conversatin=conversatin,
+                                                     user=self.request.user).exists()
+        if not is_participant:
+            raise PermissionError("you are not participant of this conversation.")
+        
+        message = serializer.save(sender=self.request.user)
+        conversatin.last_message = message
+        conversatin.save(update_fields=['last_message', 'updated_at'])
