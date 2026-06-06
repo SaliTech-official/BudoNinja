@@ -2,6 +2,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from chat.models import Conversation, Message
 from accounts.api.serializers import UserSerializer
+from chat.custom_relational_fields import CustomMessageSenderField
 
 
 User = get_user_model()
@@ -56,6 +57,9 @@ class CreateMessageSerializer(serializers.ModelSerializer):
     
 
 class MessageSerializer(serializers.ModelSerializer):
+    sender = CustomMessageSenderField(read_only=True)
+    created_at = serializers.DateTimeField(format='%H:%M')
+
     class Meta:
         model = Message
-        fields = ('text', 'file', 'created_at')
+        fields = ('sender', 'text', 'file', 'created_at')
