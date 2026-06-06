@@ -55,3 +55,7 @@ class CreateMessageSerializer(serializers.ModelSerializer):
         return attrs
     
 
+class MessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ('text', 'file', 'created_at')
