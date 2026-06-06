@@ -4,8 +4,10 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
 from .serializers import (CreateConversationSerializer, ConversationSerializer,
-                          ConversationListSerializer, CreateMessageSerializer)
-from chat.models import Conversation, ConversationParticipant
+                          ConversationListSerializer, CreateMessageSerializer,
+                          MessageSerializer)
+from chat.models import (Conversation, ConversationParticipant,
+                         Message)
 
 
 User = get_user_model()
@@ -77,3 +79,13 @@ class CreateMessageView(CreateAPIView):
         message = serializer.save(sender=self.request.user)
         conversation.last_message = message
         conversation.save(update_fields=['last_message', 'updated_at'])
+
+
+class ConversationMessgesView(ListAPIView):
+    """return all messages from conversation."""
+    serializer_class = MessageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        conversation = self.request.query_params.get('conversation')
+        return Message.objects.filter(conversation=conversation)
