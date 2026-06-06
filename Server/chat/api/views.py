@@ -88,4 +88,5 @@ class ConversationMessgesView(ListAPIView):
 
     def get_queryset(self):
         conversation = self.request.query_params.get('conversation')
-        return Message.objects.filter(conversation=conversation)
+        return Message.objects.filter(conversation=conversation, is_deleted=False,
+                                      conversation__participants__user=self.request.user)
