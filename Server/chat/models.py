@@ -35,7 +35,7 @@ class Message(models.Model):
     is_deleted = models.BooleanField(default=False)
 
     text = models.TextField(null=True, blank=True)
-    file = models.FileField(null=True, blank=True)
+    file = models.FileField(null=True, blank=True, upload_to='chat/fiels')
 
     created_at = jmodels.jDateTimeField(auto_now_add=True)
     
