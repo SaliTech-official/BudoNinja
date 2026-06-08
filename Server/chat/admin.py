@@ -14,4 +14,4 @@ class ConversationParticipantAdmin(admin.ModelAdmin):
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    list_display = ('conversation', 'sender', 'created_at')
+    list_display = ('id', 'conversation', 'sender', 'created_at')

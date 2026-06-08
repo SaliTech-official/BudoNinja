@@ -88,13 +88,13 @@ class ForwardMessageView(GenericAPIView):
 
     def post(self, request):
         ser_data = self.get_serializer(data=request.data)
-        ser_data.is_valid(raise_exeption=True)
+        ser_data.is_valid(raise_exception=True)
 
         message = Message.objects.get(id=ser_data.validated_data['message_id'])
         target_conversation = Conversation.objects.get(id=ser_data.validated_data['conversation_id'])
 
         is_participant = ConversationParticipant.objects.filter(
-            conversation__id=target_conversation,
+            conversation__id=target_conversation.id,
             user=request.user
         ).exists()
 
@@ -108,6 +108,9 @@ class ForwardMessageView(GenericAPIView):
             file=message.file,
             forwarded_from=message
         )
+        forwarded_message.is_forwarded = True
+        forwarded_message.save(update_fields=['is_forwarded'])
+
 
         target_conversation.last_message = forwarded_message
         target_conversation.save(update_fields=['last_message'])
