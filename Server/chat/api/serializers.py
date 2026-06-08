@@ -57,6 +57,7 @@ class CreateMessageSerializer(serializers.ModelSerializer):
     
 
 class ForwardMessageSerializer(serializers.ModelSerializer):
+    sender = CustomMessageSenderField(read_only=True)
     class Meta:
         model = Message
         fields = ('id', 'text', 'sender')
