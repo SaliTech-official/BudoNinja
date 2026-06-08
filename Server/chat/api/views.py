@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
 from .serializers import (CreateConversationSerializer, ConversationSerializer,
                           ConversationListSerializer, CreateMessageSerializer,
-                          MessageSerializer)
+                          MessageSerializer, ForwardMessageSerializer)
 from chat.models import (Conversation, ConversationParticipant,
                          Message)
 
@@ -79,6 +79,40 @@ class CreateMessageView(CreateAPIView):
         message = serializer.save(sender=self.request.user)
         conversation.last_message = message
         conversation.save(update_fields=['last_message', 'updated_at'])
+
+
+class ForwardMessageView(GenericAPIView):
+    """forward message from one conversation to another."""
+    serializer_class = ForwardMessageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        ser_data = self.get_serializer(data=request.data)
+        ser_data.is_valid(raise_exeption=True)
+
+        message = Message.objects.get(id=ser_data.validated_data['message_id'])
+        target_conversation = Conversation.objects.get(id=ser_data.validated_data['conversation_id'])
+
+        is_participant = ConversationParticipant.objects.filter(
+            conversation__id=target_conversation,
+            user=request.user
+        ).exists()
+
+        if not is_participant:
+            raise self.permission_denied()
+        
+        forwarded_message = Message.objects.create(
+            conversation=target_conversation,
+            sender=request.user,
+            text=message.text,
+            file=message.file,
+            forwarded_from=message
+        )
+
+        target_conversation.last_message = forwarded_message
+        target_conversation.save(update_fields=['last_message'])
+
+        return Response({'id': forwarded_message.id})
 
 
 class ConversationMessgesView(ListAPIView):
