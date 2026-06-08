@@ -3,6 +3,7 @@ from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView, ListAPIView, CreateAPIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from chat.permissions import IsConversationParticipant
 from django.contrib.auth import get_user_model
 from .serializers import (CreateConversationSerializer, ConversationSerializer,
                           ConversationListSerializer, CreateMessageSerializer,
@@ -135,9 +136,11 @@ class ConversationMessgesView(ListAPIView):
 class DeleteConversationView(APIView):
     """delete conversation via id.
     id most be in path parameters."""
+    permission_classes = [IsAuthenticated, IsConversationParticipant]
 
     def delete(self, request, conversation_id):
         conversation = get_object_or_404(Conversation, id=conversation_id)
+        self.check_object_permissions(request, conversation)
         conversation.delete()
         return Response({'detail': "conversation deleted successfully."},
                         status=status.HTTP_204_NO_CONTENT)
