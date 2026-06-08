@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import get_user_model
 from .serializers import (CreateConversationSerializer, ConversationSerializer,
                           ConversationListSerializer, CreateMessageSerializer,
-                          MessageSerializer, ForwardMessageSerializer)
+                          MessageSerializer, CreateForwardMessageSerializer)
 from chat.models import (Conversation, ConversationParticipant,
                          Message)
 
@@ -83,7 +83,7 @@ class CreateMessageView(CreateAPIView):
 
 class ForwardMessageView(GenericAPIView):
     """forward message from one conversation to another."""
-    serializer_class = ForwardMessageSerializer
+    serializer_class = CreateForwardMessageSerializer
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
@@ -123,4 +123,4 @@ class ConversationMessgesView(ListAPIView):
     def get_queryset(self):
         conversation = self.request.query_params.get('conversation')
         return Message.objects.filter(conversation=conversation, is_deleted=False,
-                                      conversation__participants__user=self.request.user)
+                                      conversation__participants__user=self.request.user).select_related('sender', 'forwarded_from')

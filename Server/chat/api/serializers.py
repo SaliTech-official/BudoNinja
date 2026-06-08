@@ -56,15 +56,22 @@ class CreateMessageSerializer(serializers.ModelSerializer):
         return attrs
     
 
+class ForwardMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ('id', 'text', 'sender')
+
+
 class MessageSerializer(serializers.ModelSerializer):
     sender = CustomMessageSenderField(read_only=True)
     created_at = serializers.DateTimeField(format='%H:%M')
+    forwarded_from = ForwardMessageSerializer(read_only=True)
 
     class Meta:
         model = Message
-        fields = ('sender', 'text', 'file', 'created_at')
+        fields = ('id', 'sender', 'text', 'file', 'created_at', 'is_forwarded', 'forwarded_from')
 
 
-class ForwardMessageSerializer(serializers.Serializer):
+class CreateForwardMessageSerializer(serializers.Serializer):
     message_id = serializers.IntegerField()
     conversation_id = serializers.IntegerField()

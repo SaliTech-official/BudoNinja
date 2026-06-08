@@ -37,6 +37,7 @@ class Message(models.Model):
     text = models.TextField(null=True, blank=True)
     file = models.FileField(null=True, blank=True, upload_to='chat/fiels')
 
+    is_forwarded = models.BooleanField(default=False)
     forwarded_from = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, related_name='forwarded_messages')
 
     created_at = jmodels.jDateTimeField(auto_now_add=True)
