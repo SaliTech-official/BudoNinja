@@ -63,3 +63,8 @@ class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = ('sender', 'text', 'file', 'created_at')
+
+
+class ForwardMessageSerializer(serializers.Serializer):
+    message_id = serializers.IntegerField()
+    conversation_id = serializers.IntegerField()
