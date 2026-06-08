@@ -1,11 +1,16 @@
 from rest_framework.response import Response
-from rest_framework.generics import GenericAPIView, ListAPIView
+from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView, ListAPIView, CreateAPIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+from chat.permissions import IsConversationParticipant
 from django.contrib.auth import get_user_model
 from .serializers import (CreateConversationSerializer, ConversationSerializer,
-                          ConversationListSerializer)
-from chat.models import Conversation, ConversationParticipant
+                          ConversationListSerializer, CreateMessageSerializer,
+                          MessageSerializer, CreateForwardMessageSerializer)
+from chat.models import (Conversation, ConversationParticipant,
+                         Message)
+from django.shortcuts import get_object_or_404
 
 
 User = get_user_model()
@@ -59,3 +64,83 @@ class ConversationListView(ListAPIView):
         ).prefetch_related(
             "participants__user"
         ).order_by("-updated_at")
+    
+
+class CreateMessageView(CreateAPIView):
+    """endpoint for createing message for conversation that user have."""
+    serializer_class = CreateMessageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        conversation = serializer.validated_data['conversation']
+
+        is_participant = ConversationParticipant.objects.filter(conversation=conversation,
+                                                     user=self.request.user).exists()
+        if not is_participant:
+            raise PermissionError("you are not participant of this conversation.")
+        
+        message = serializer.save(sender=self.request.user)
+        conversation.last_message = message
+        conversation.save(update_fields=['last_message', 'updated_at'])
+
+
+class ForwardMessageView(GenericAPIView):
+    """forward message from one conversation to another."""
+    serializer_class = CreateForwardMessageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        ser_data = self.get_serializer(data=request.data)
+        ser_data.is_valid(raise_exception=True)
+
+        message = Message.objects.get(id=ser_data.validated_data['message_id'])
+        target_conversation = Conversation.objects.get(id=ser_data.validated_data['conversation_id'])
+
+        is_participant = ConversationParticipant.objects.filter(
+            conversation__id=target_conversation.id,
+            user=request.user
+        ).exists()
+
+        if not is_participant:
+            raise self.permission_denied()
+        
+        forwarded_message = Message.objects.create(
+            conversation=target_conversation,
+            sender=request.user,
+            text=message.text,
+            file=message.file,
+            forwarded_from=message
+        )
+        forwarded_message.is_forwarded = True
+        forwarded_message.save(update_fields=['is_forwarded'])
+
+
+        target_conversation.last_message = forwarded_message
+        target_conversation.save(update_fields=['last_message'])
+
+        return Response({'id': forwarded_message.id},
+                        status=status.HTTP_200_OK)
+
+
+class ConversationMessgesView(ListAPIView):
+    """return all messages from conversation."""
+    serializer_class = MessageSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        conversation = self.request.query_params.get('conversation')
+        return Message.objects.filter(conversation=conversation, is_deleted=False,
+                                      conversation__participants__user=self.request.user).select_related('sender', 'forwarded_from')
+    
+
+class DeleteConversationView(APIView):
+    """delete conversation via id.
+    id most be in path parameters."""
+    permission_classes = [IsAuthenticated, IsConversationParticipant]
+
+    def delete(self, request, conversation_id):
+        conversation = get_object_or_404(Conversation, id=conversation_id)
+        self.check_object_permissions(request, conversation)
+        conversation.delete()
+        return Response({'detail': "conversation deleted successfully."},
+                        status=status.HTTP_204_NO_CONTENT)

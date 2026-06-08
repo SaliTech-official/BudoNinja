@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from chat.models import Conversation
+from chat.models import Conversation, Message
 from accounts.api.serializers import UserSerializer
+from chat.custom_relational_fields import CustomMessageSenderField
 
 
 User = get_user_model()
@@ -44,3 +45,34 @@ class CreateConversationSerializer(serializers.Serializer):
         return value
     
 
+class CreateMessageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Message
+        fields = ('conversation', 'text', 'file')
+
+    def validate(self, attrs):
+        if not attrs.get('text') and not attrs.get('file'):
+            raise serializers.ValidationError("message or file is required.")
+        return attrs
+    
+
+class ForwardMessageSerializer(serializers.ModelSerializer):
+    sender = CustomMessageSenderField(read_only=True)
+    class Meta:
+        model = Message
+        fields = ('id', 'text', 'sender')
+
+
+class MessageSerializer(serializers.ModelSerializer):
+    sender = CustomMessageSenderField(read_only=True)
+    created_at = serializers.DateTimeField(format='%H:%M')
+    forwarded_from = ForwardMessageSerializer(read_only=True)
+
+    class Meta:
+        model = Message
+        fields = ('id', 'sender', 'text', 'file', 'created_at', 'is_forwarded', 'forwarded_from')
+
+
+class CreateForwardMessageSerializer(serializers.Serializer):
+    message_id = serializers.IntegerField()
+    conversation_id = serializers.IntegerField()
