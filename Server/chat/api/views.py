@@ -1,4 +1,5 @@
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework.generics import GenericAPIView, ListAPIView, CreateAPIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
@@ -8,6 +9,7 @@ from .serializers import (CreateConversationSerializer, ConversationSerializer,
                           MessageSerializer, CreateForwardMessageSerializer)
 from chat.models import (Conversation, ConversationParticipant,
                          Message)
+from django.shortcuts import get_object_or_404
 
 
 User = get_user_model()
@@ -115,7 +117,8 @@ class ForwardMessageView(GenericAPIView):
         target_conversation.last_message = forwarded_message
         target_conversation.save(update_fields=['last_message'])
 
-        return Response({'id': forwarded_message.id})
+        return Response({'id': forwarded_message.id},
+                        status=status.HTTP_200_OK)
 
 
 class ConversationMessgesView(ListAPIView):
@@ -127,3 +130,14 @@ class ConversationMessgesView(ListAPIView):
         conversation = self.request.query_params.get('conversation')
         return Message.objects.filter(conversation=conversation, is_deleted=False,
                                       conversation__participants__user=self.request.user).select_related('sender', 'forwarded_from')
+    
+
+class DeleteConversationView(APIView):
+    """delete conversation via id.
+    id most be in path parameters."""
+
+    def delete(self, request, conversation_id):
+        conversation = get_object_or_404(Conversation, id=conversation_id)
+        conversation.delete()
+        return Response({'detail': "conversation deleted successfully."},
+                        status=status.HTTP_204_NO_CONTENT)
