@@ -34,6 +34,7 @@ urlpatterns = [
     path('inbox/api/v1/', include("inbox.urls", namespace='inbox')),
     path('courses/api/v1/', include("courses.urls", namespace='courses')),
     path('chat/api/v1/', include("chat.urls", namespace='chat')),
+    path('certificates/api/v1/', include("certificates.urls", namespace='certificates')),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/schema/swagger-ui/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
     path("api/schema/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),

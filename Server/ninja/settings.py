@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'inbox.apps.InboxConfig',
     'courses.apps.CoursesConfig',
     'chat.apps.ChatConfig',
+    'certificates.apps.CertificatesConfig',
     
 
     # THIRD PARTIES
