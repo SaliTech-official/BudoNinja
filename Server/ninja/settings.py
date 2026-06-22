@@ -35,9 +35,9 @@ CORS_ALLOWED_ORIGINS = [
 
 # SESSION CONFIGS
 SESSION_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = False
 CSRF_COOKIE_SAMESITE = 'None'
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_AGE = 1200 
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
@@ -54,6 +54,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django_jalali',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -82,6 +83,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
