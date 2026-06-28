@@ -21,4 +21,4 @@ class GetCitiesView(ListAPIView):
 
     def get_queryset(self):
         province = self.request.query_params.get("province")
-        return City.objects.filter(province__name=province)
+        return City.objects.filter(province__id=province)
