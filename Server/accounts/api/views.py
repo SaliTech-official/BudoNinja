@@ -55,6 +55,9 @@ class UserVerifyView(APIView):
         ser_data = self.serializer_class(data=request.data)
         if ser_data.is_valid(raise_exception=True):
             user_session = request.session['user_register_info']
+            if not user_session:
+                return Response({'error': "session was expired."},
+                                status=status.HTTP_400_BAD_REQUEST)
             otp = ser_data.validated_data['code'] 
             user = User.objects.filter(phone_number=user_session['phone']).first()
             if not user:
