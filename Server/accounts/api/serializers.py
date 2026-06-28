@@ -18,6 +18,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
                   'password', 'birthday', 'gender', 'province', 'city')
         extra_kwargs = {'password': {'write_only': True}}
 
+    def validate_national_code(self, value):
+        if User.objects.filter(national_code=value).exists():
+            raise serializers.ValidationError("user with this national code already exists.")
+        return value
+    
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
 
