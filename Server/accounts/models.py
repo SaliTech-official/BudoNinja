@@ -89,6 +89,9 @@ class Profile(models.Model):
     jurisprudence = models.PositiveSmallIntegerField(default=0)
     chalenge_participated = models.PositiveSmallIntegerField(default=0)
 
+    created_at = jmodels.jDateTimeField(auto_now_add=True)
+    updated_at = jmodels.jDateTimeField(auto_now=True)
+
     def __str__(self):
         return self.user.full_name
     
