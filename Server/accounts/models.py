@@ -24,7 +24,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     national_code = models.CharField(max_length=10)
     phone_number = models.CharField(max_length=11, unique=True)
     birthday = models.DateField(null=True, blank=True)
-    gender = models.CharField(choices=GENDER_CHOICES)
+    gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     
     # living
     province = models.ForeignKey(Province, on_delete=models.SET_NULL, null=True, blank=True, related_name="users")
@@ -56,18 +56,35 @@ def user_profile_path(instance, file_name):
 
 
 class Profile(models.Model):
+    EDUCATION_CHOICES = (
+        ("diploma", "دیپلم"),
+        ("associate", "کاردانی"),
+        ("bachelor", "کارشناسی"),
+        ("master", "کارشناسی ارشد"),
+        ("phd", "دکتری"),
+    )
+
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+
     email = models.EmailField(null=True, blank=True)
     father_name = models.CharField(max_length=64, null=True, blank=True)
     level = models.CharField(max_length=128, null=True, blank=True, default="")
-    landline_phone = models.CharField(max_length=8, null=True, blank=True)
+    is_maried = models.BooleanField(default=False)
 
-    # images
+    education = models.CharField(max_length=20, choices=EDUCATION_CHOICES, null=True, blank=True)
+    job = models.CharField(max_length=258, null=True, blank=True)
+
+    birth_certificate_serial = models.CharField(max_length=6, null=True, blank=True)
+    issue_place = models.CharField(max_length=128, null=True, blank=True)
+
+    landline_phone = models.CharField(max_length=15, null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
+
+    personal_photo = models.ImageField(upload_to=user_profile_path, null=True, blank=True)
     id_card_image = models.ImageField(upload_to=user_profile_path, null=True, blank=True)
-    birth_certificate_image = models.ImageField(upload_to=user_profile_path, null=True, blank=True) 
-    sport_insurance_image = models.ImageField(upload_to=user_profile_path, null=True, blank=True) 
+    birth_certificate_image = models.ImageField(upload_to=user_profile_path, null=True, blank=True)
+    sport_insurance_image = models.ImageField(upload_to=user_profile_path, null=True, blank=True)
 
-    # meta datas
     technical_workshops = models.PositiveSmallIntegerField(default=0)
     jurisprudence = models.PositiveSmallIntegerField(default=0)
     chalenge_participated = models.PositiveSmallIntegerField(default=0)
