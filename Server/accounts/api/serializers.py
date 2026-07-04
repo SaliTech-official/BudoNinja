@@ -129,3 +129,7 @@ class UserSetNewPasswordSerializer(serializers.Serializer):
         if attrs['password'] != attrs['confirm_password']:
             raise serializers.ValidationError("password most match together.")
         return attrs
+    
+
+class ExistenceOfTheUserSerializer(serializers.Serializer):
+    phone_number = serializers.CharField(max_length=11)

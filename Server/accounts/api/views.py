@@ -6,7 +6,8 @@ from .serializers import (UserRegisterSerializer, OTPInputSerializer,
                           UserLoginSerializer, UserChangePasswordSerializer,
                           UserProfileSerializer, UserResetPasswordInputSerializer,
                           UserResetPasswordConfirmSerializer, UserSetNewPasswordSerializer,
-                          UserProfileUpdateSerializer, UserDashbordSerializer, GetMemberShipInfoSerializer)
+                          UserProfileUpdateSerializer, UserDashbordSerializer, GetMemberShipInfoSerializer,
+                          ExistenceOfTheUserSerializer)
 from django.contrib.auth import get_user_model, authenticate
 from accounts.models import OTP, Profile, Membership
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -262,3 +263,18 @@ class UserSetNewPasswordView(APIView):
                                 status=status.HTTP_200_OK)
             return Response({'error': "user not verified for reset password."},
                             status=status.HTTP_403_FORBIDDEN)
+        
+
+class UserExistenceView(APIView):
+    """checks if user exists whith given phone_number"""
+    serializser_class = ExistenceOfTheUserSerializer
+
+    def post(self, request):
+        ser_data = self.serializser_class(data=request.data)
+        ser_data.is_valid(raise_exception=True)
+        user = User.objects.filter(phone_number=ser_data.validated_data['phone_number']).first()
+        if user:
+            return Response({'error': "user with this phone_number already exists."},
+                            status=status.HTTP_409_CONFLICT)
+        return Response({'detail': "user with this phone number not found."},
+                        status=status.HTTP_204_NO_CONTENT)
