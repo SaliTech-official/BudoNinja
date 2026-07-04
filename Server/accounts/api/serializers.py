@@ -68,7 +68,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
 class UserProfileUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ('father_name', 'landline_phone', 'email')
+        exclude = (
+            "id",
+            "user",
+            "created_at",
+            "updated_at",
+        )
 
 
 class UserDashbordSerializer(serializers.ModelSerializer):

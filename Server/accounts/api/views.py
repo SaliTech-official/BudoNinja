@@ -111,7 +111,7 @@ class UserLoginView(APIView):
                     "refresh": str(refresh),
                     'access': str(refresh.access_token)
                 }, status=status.HTTP_200_OK)
-            return Response({'user credetials are invalid.'},
+            return Response({'error': 'user credetials are invalid.'},
                             status=status.HTTP_400_BAD_REQUEST)
 
 
