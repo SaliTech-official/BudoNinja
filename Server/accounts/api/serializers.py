@@ -57,6 +57,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
     phone_number = serializers.CharField(source="user.phone_number", read_only=True)
     full_name = serializers.CharField(source="user.full_name", read_only=True)
     birthday = serializers.DateField(source="user.birthday", read_only=True)
+    province = serializers.CharField(source="user.province", read_only=True)
+    city = serializers.CharField(source="user.city", read_only=True)
     gender = serializers.CharField(source="user.gender", read_only=True)
     national_code = serializers.CharField(source="user.national_code", read_only=True)
 
