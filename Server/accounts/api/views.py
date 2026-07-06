@@ -277,4 +277,4 @@ class UserExistenceView(APIView):
             return Response({'error': "user with this phone_number already exists."},
                             status=status.HTTP_409_CONFLICT)
         return Response({'detail': "user with this phone number not found."},
-                        status=status.HTTP_204_NO_CONTENT)
+                        status=status.HTTP_200_OK)
