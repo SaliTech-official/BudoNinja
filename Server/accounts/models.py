@@ -57,6 +57,7 @@ def user_profile_path(instance, file_name):
 
 class Profile(models.Model):
     EDUCATION_CHOICES = (
+        ("under_diploma", "زیر دیپلم"),
         ("diploma", "دیپلم"),
         ("associate", "کاردانی"),
         ("bachelor", "کارشناسی"),
