@@ -12,7 +12,7 @@ class GetNewsView(ListAPIView):
     """returns list of newses (only publics)."""
     serializer_class = GetNewsSerializer
     pagination_class = SmallPagePagination
-    filter_backends = filters.SearchFilter
+    filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'content']
 
 
