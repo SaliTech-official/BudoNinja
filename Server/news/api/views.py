@@ -1,4 +1,5 @@
 from rest_framework.views import APIView
+from rest_framework import filters
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
 from .serializers import GetNewsSerializer, CategoriesSerializer
@@ -11,9 +12,12 @@ class GetNewsView(ListAPIView):
     """returns list of newses (only publics)."""
     serializer_class = GetNewsSerializer
     pagination_class = SmallPagePagination
+    filter_backends = filters.SearchFilter
+    search_fields = ['title', 'content']
+
 
     def get_queryset(self):
-        category = self.request.query_params.get("search")
+        category = self.request.query_params.get("category")
         if category:
             return News.objects.filter(category__name=category, is_public=True)
         return News.objects.filter(is_public=True)
