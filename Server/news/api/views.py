@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView
-from .serializers import GetNewsSerializer
-from news.models import News
+from .serializers import GetNewsSerializer, CategoriesSerializer
+from news.models import News, Category
 from news.pagination import SmallPagePagination
 from rest_framework import status
 
@@ -33,3 +33,8 @@ class GetNewsDetailView(APIView):
         return Response({'data': ser_data.data},
                         status=status.HTTP_200_OK)
 
+
+class GetCategoriesView(ListAPIView):
+    """returns list of all categories"""
+    serializer_class = CategoriesSerializer
+    queryset = Category.objects.all()
