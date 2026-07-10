@@ -18,6 +18,6 @@ class GetProvinceTeachersView(ListAPIView):
         if not province:
             return Teacher.objects.all()
         
-        return Teacher.objects.filter(province__name=province)
+        return Teacher.objects.filter(province__id=province)
 
     
