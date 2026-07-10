@@ -1,5 +1,9 @@
 from django.db import models
+from django.contrib.auth import get_user_model
 from django_jalali.db import models as jmodels
+
+
+User = get_user_model()
 
 
 class WeightCategory(models.Model):
@@ -57,3 +61,30 @@ class Chalenge(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.place}"
+    
+
+class ChallengeRegistration(models.Model):
+    STATUS_CHOICES = (
+        ("pending", "در انتظار تایید"),
+        ("accepted", "تایید شده"),
+        ("rejected", "رد شده"),
+        ("cancelled", "لغو شده"),
+    )
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="chalenges")
+    chalenge = models.ForeignKey(Chalenge, on_delete=models.CASCADE, related_name="users")
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default="pending"
+    )
+
+    created_at = jmodels.jDateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["user", "chalenge"],
+                name="unique_user_challenge"
+            )
+        ]
