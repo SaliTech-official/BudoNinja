@@ -3,9 +3,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
-from .serializers import GetChalengeSerializer
-from chalenge.models import Chalenge
+from .serializers import GetChalengeSerializer, UserChallengesSerializer
+from chalenge.models import Chalenge, ChallengeRegistration
 from chalenge.pagination import ChalengeSmallPagePagination
+from rest_framework.permissions import IsAuthenticated
 
 
 class GetChalengeView(ListAPIView):
@@ -25,6 +26,14 @@ class GetChalengeView(ListAPIView):
         
         return Chalenge.objects.all()
     
+
+class GetUserChallengesView(ListAPIView):
+    """returns list of challenges that user registerd."""
+    serializer_class = UserChallengesSerializer
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return ChallengeRegistration.objects.filter(user=self.request.user).select_related("chalenge")
 
 class GetChalengeDetailView(APIView):
     """returns one chalenge details(all the fields) via chalenge id
