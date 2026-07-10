@@ -9,7 +9,7 @@ class WeightCategory(models.Model):
     max_weight = models.DecimalField(max_digits=5, decimal_places=2)
 
     def __str__(self):
-        return f"{self.title} - {self.min_weight}/{self.max_weight}kg"
+        return f"{self.title} - {self.min_weight}/{self.max_weight}"
 
 class AgeGroup(models.Model):
     title = models.CharField(max_length=68)
@@ -43,7 +43,7 @@ class Chalenge(models.Model):
     explain = models.TextField()
     place = models.CharField(max_length=128)
     price = models.DecimalField(max_digits=13, decimal_places=0, null=True, blank=True)
-    image = models.ImageField(upload_to="chalenges/")
+    image = models.ImageField(upload_to="chalenges/", null=True, blank=True)
     chalenge_type = models.CharField(choices=TYPE_CHOICES, default='solo')
     gender = models.CharField(choices=GENDER_CHOICES)
     level = models.CharField(choices=LEVEL_CHOICES)
