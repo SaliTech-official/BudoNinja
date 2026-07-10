@@ -20,6 +20,8 @@ class GetChalengeView(ListAPIView):
 
         if open_only and open_only == "yes":
             return Chalenge.objects.filter(is_open=True)
+        if open_only and open_only == "no":
+            return Chalenge.objects.filter(is_open=False)
         
         return Chalenge.objects.all()
     
