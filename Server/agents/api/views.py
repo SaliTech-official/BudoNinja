@@ -13,11 +13,17 @@ class GetProvinceTeachersView(ListAPIView):
     serializer_class = GetTeachersSerializer
 
     def get_queryset(self):
-        province = self.request.query_params.get('province')
+        queryset = Teacher.objects.all()
 
-        if not province:
-            return Teacher.objects.all()
-        
-        return Teacher.objects.filter(province__id=province)
+        province = self.request.query_params.get("province")
+        is_senior = self.request.query_params.get("senior")
 
+        if province:
+            queryset = queryset.filter(province_id=province)
+
+        if is_senior is not None:
+            is_senior = is_senior.lower() == "true"
+            queryset = queryset.filter(is_senior=is_senior)
+    
+        return queryset
     
