@@ -1,8 +1,22 @@
 from rest_framework import serializers
-from chalenge.models import Chalenge, ChallengeRegistration
+from chalenge.models import Chalenge, ChallengeRegistration, AgeGroup, WeightCategory
+
+
+class AgeGroupsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AgeGroup
+        fields = "__all__"
+
+
+class WeightCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WeightCategory
+        fields = "__all__"
 
 
 class GetChalengeSerializer(serializers.ModelSerializer):
+    weight_categories = WeightCategorySerializer(many=True)
+    age_groups = AgeGroupsSerializer(many=True)
 
     class Meta:
         model = Chalenge
