@@ -1,8 +1,13 @@
 from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework import status
-from .serializers import CourseSerializer
-from courses.models import Course
+from .serializers import CourseSerializer, CategorySerializer
+from courses.models import Course, Category
+
+
+class GetCategoriesView(ListAPIView):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
 
 
 class GetCoursesView(ListAPIView):

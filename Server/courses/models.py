@@ -14,6 +14,11 @@ class Category(models.Model):
         return self.name
 
 class Course(models.Model):
+    TYPE_CHOICES = (
+        ("public", "عمومی"),
+        ("private", "خصوصی")
+    )
+
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='courses', null=True, blank=True)
     title = models.CharField(max_length=128)
     explain = models.TextField()
@@ -25,6 +30,8 @@ class Course(models.Model):
     price = models.DecimalField(max_digits=13, decimal_places=0)
     participants = models.SmallIntegerField(default=0)
     age_group = models.ForeignKey(AgeGroup, on_delete=models.SET_NULL, related_name="courses", null=True, blank=True)
+    type = models.CharField(choices=TYPE_CHOICES)
+    sessions = models.SmallIntegerField()
 
     start_date = jmodels.jDateField()
     end_date = jmodels.jDateField()
