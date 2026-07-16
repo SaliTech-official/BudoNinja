@@ -1,12 +1,14 @@
 from rest_framework import serializers
 from courses.models import Course
 from courses.custom_relational_fields import (CustomTeacherRelationalField,
-                                              CustomCategoryRelationalField)
+                                              CustomCategoryRelationalField,
+                                              CustomAgeGroupRelationalField)
 
 
-class GetCoursesSerializer(serializers.ModelSerializer):
+class CourseSerializer(serializers.ModelSerializer):
     teacher = CustomTeacherRelationalField(read_only=True)
     category = CustomCategoryRelationalField(read_only=True)
+    age_group = CustomAgeGroupRelationalField(read_only=True)
     class Meta:
         model = Course
         fields = "__all__"

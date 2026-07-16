@@ -9,3 +9,8 @@ class CustomTeacherRelationalField(serializers.RelatedField):
 class CustomCategoryRelationalField(serializers.RelatedField):
     def to_representation(self, value):
         return value.name
+    
+
+class CustomAgeGroupRelationalField(serializers.RelatedField):
+    def to_representation(self, value):
+        return value.title
