@@ -68,6 +68,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
 
     email = models.EmailField(null=True, blank=True)
+    full_name_latin = models.CharField(max_length=128, null=True, blank=True)
     father_name = models.CharField(max_length=64, null=True, blank=True)
     level = models.CharField(max_length=128, null=True, blank=True, default="")
     is_maried = models.BooleanField(default=False)
