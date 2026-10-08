@@ -1,18 +1,58 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import { router } from './routes';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import './index.css'
+import { router } from "./routes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "react-hot-toast";
+import "./index.css";
 
-const queryClient = new QueryClient();
-
-ReactDOM.createRoot(document.getElementById('root')!).render(
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+      staleTime: 5 * 60 * 1000, // 5 دقیقه
+    },
+    mutations: {
+      retry: 0,
+    },
+  },
+});
+ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
+
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            fontFamily: "Vazirmatn, sans-serif",
+            direction: "rtl",
+            fontSize: "14px",
+            maxWidth: "420px",
+          },
+          success: {
+            style: {
+              background: "#f0fdf4",
+              color: "#166534",
+              border: "1px solid #bbf7d0",
+            },
+          },
+          error: {
+            style: {
+              background: "#fef2f2",
+              color: "#991b1b",
+              border: "1px solid #fecaca",
+            },
+            duration: 5000,
+          },
+        }}
+      />
+
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { X } from 'lucide-react';
-import { Button } from '../../UI/Button';
-import { Sidebar } from './Sidebar';
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { X } from "lucide-react";
+import { Button } from "../../UI/Button";
+import { Sidebar } from "./Sidebar";
+import { useNewsFilters } from "../../../hooks/useNewsFilters";
 
 interface FilterModalProps {
   onClose: () => void;
 }
 
 export function FilterModal({ onClose }: FilterModalProps) {
+  const { clearFilters, hasFilters } = useNewsFilters();
+
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, []);
 
@@ -24,6 +27,11 @@ export function FilterModal({ onClose }: FilterModalProps) {
   const modalVariants = {
     visible: { y: 0, opacity: 1 },
     hidden: { y: "100%", opacity: 0 },
+  };
+
+  const handleClear = () => {
+    clearFilters();
+    onClose();
   };
 
   return (
@@ -46,10 +54,15 @@ export function FilterModal({ onClose }: FilterModalProps) {
         transition={{ type: "spring", damping: 40, stiffness: 400 }}
         className="fixed px-6 py-4 bottom-0 left-0 right-0 z-50 flex h-[80vh] flex-col gap-6 rounded-t-2xl bg-white"
       >
-        <div className='w-10 h-1 bg-neutral-500 rounded-full mx-auto'></div>
+        <div className="w-10 h-1 bg-neutral-500 rounded-full mx-auto"></div>
         <div className="flex items-center justify-between pb-4 border-b border-neutral-200">
           <h3 className="text-xl font-bold text-neutral-900">فیلترها</h3>
-          <Button variant="ghost" size="icon" onClick={onClose} className='text-neutral-500 hover:bg-neutral-600'>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={onClose}
+            className="text-neutral-500 hover:bg-neutral-100"
+          >
             <X className="h-6 w-6" />
           </Button>
         </div>
@@ -59,11 +72,16 @@ export function FilterModal({ onClose }: FilterModalProps) {
         </div>
 
         <div className="flex justify-center gap-2.5">
-          <Button variant="ghost" className="w-full" onClick={onClose}>
-            حذف فیلتر ها
+          <Button
+            variant="ghost"
+            className="w-full"
+            onClick={handleClear}
+            disabled={!hasFilters}
+          >
+            حذف فیلترها
           </Button>
           <Button className="w-full" onClick={onClose}>
-            اعمال فیلتر
+            اعمال و بستن
           </Button>
         </div>
       </motion.div>
